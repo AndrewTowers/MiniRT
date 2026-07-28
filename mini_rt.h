@@ -6,7 +6,7 @@
 /*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 14:02:05 by bsiguenc          #+#    #+#             */
-/*   Updated: 2026/07/28 14:09:56 by bsiguenc         ###   ########.fr       */
+/*   Updated: 2026/07/28 15:22:21 by bsiguenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,20 @@
 # include <stdio.h>
 # include <string.h>
 # include <sys/time.h>
+# include "minilibx-linux/mlx.h"
 
+typedef struct s_mlx_dt
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		endian;
+} 		t_mlx_dt;
 
+typedef struct s_data
+{
+	void	*mlx;
+	void	*mlx_win;
+}	t_data;
 
 #endif
