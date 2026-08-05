@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/05 15:59:00 by blas              #+#    #+#             */
-/*   Updated: 2026/08/05 16:49:29 by blas             ###   ########.fr       */
+/*   Created: 2025/04/10 10:48:11 by bsiguenc          #+#    #+#             */
+/*   Updated: 2025/04/10 11:28:55 by bsiguenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_rt.h"
+#include "libft.h"
 
-int main(int argn, char **args)
+int	ft_tolower(int c)
 {
-	// t_data dt;
-
-	if (argn < 1)
-		return (1);
-	// else if (!
-	check_args(args, ".rt", argn - 1, 1);
-	if (argn == 0)
-		printf(" ");
-	else if (args != NULL)
-		printf(" ");
-	return (0);
+	if (c >= 'A' && c <= 'Z')
+		c += 32;
+	return (c);
 }

@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/05 15:59:00 by blas              #+#    #+#             */
-/*   Updated: 2026/08/05 16:49:29 by blas             ###   ########.fr       */
+/*   Created: 2025/04/10 14:08:26 by bsiguenc          #+#    #+#             */
+/*   Updated: 2025/04/10 14:25:17 by bsiguenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_rt.h"
+#include "libft.h"
 
-int main(int argn, char **args)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	// t_data dt;
+	size_t			i;
+	unsigned char	*s_t;
 
-	if (argn < 1)
-		return (1);
-	// else if (!
-	check_args(args, ".rt", argn - 1, 1);
-	if (argn == 0)
-		printf(" ");
-	else if (args != NULL)
-		printf(" ");
+	s_t = (unsigned char *) s;
+	i = 0;
+	while (i < n)
+	{
+		if (s_t[i] == (unsigned char)c)
+			return ((void *)(s_t + i));
+		i++;
+	}
 	return (0);
 }

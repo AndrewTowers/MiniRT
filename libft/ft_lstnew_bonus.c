@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/05 15:59:00 by blas              #+#    #+#             */
-/*   Updated: 2026/08/05 16:49:29 by blas             ###   ########.fr       */
+/*   Created: 2025/04/15 17:18:55 by bsiguenc          #+#    #+#             */
+/*   Updated: 2025/04/21 14:59:44 by bsiguenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_rt.h"
+#include "libft.h"
 
-int main(int argn, char **args)
+t_list	*ft_lstnew(void *content)
 {
-	// t_data dt;
+	t_list	*new;
 
-	if (argn < 1)
-		return (1);
-	// else if (!
-	check_args(args, ".rt", argn - 1, 1);
-	if (argn == 0)
-		printf(" ");
-	else if (args != NULL)
-		printf(" ");
-	return (0);
+	new = (t_list *)malloc(sizeof(t_list));
+	if (!new)
+		return (NULL);
+	new->content = content;
+	new->next = NULL;
+	return (new);
 }

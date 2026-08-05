@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/05 15:59:00 by blas              #+#    #+#             */
-/*   Updated: 2026/08/05 16:49:29 by blas             ###   ########.fr       */
+/*   Created: 2025/04/08 13:52:32 by bsiguenc          #+#    #+#             */
+/*   Updated: 2025/04/21 14:58:51 by bsiguenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_rt.h"
+#include "libft.h"
 
-int main(int argn, char **args)
+int	ft_isalnum(int c)
 {
-	// t_data dt;
-
-	if (argn < 1)
+	if (ft_isalpha(c) || ft_isdigit(c))
 		return (1);
-	// else if (!
-	check_args(args, ".rt", argn - 1, 1);
-	if (argn == 0)
-		printf(" ");
-	else if (args != NULL)
-		printf(" ");
 	return (0);
 }

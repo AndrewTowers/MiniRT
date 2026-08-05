@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/05 15:59:00 by blas              #+#    #+#             */
-/*   Updated: 2026/08/05 16:49:29 by blas             ###   ########.fr       */
+/*   Created: 2025/04/10 11:40:58 by bsiguenc          #+#    #+#             */
+/*   Updated: 2026/08/05 16:32:30 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_rt.h"
+#include "libft.h"
 
-int main(int argn, char **args)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	// t_data dt;
-
-	if (argn < 1)
-		return (1);
-	// else if (!
-	check_args(args, ".rt", argn - 1, 1);
-	if (argn == 0)
-		printf(" ");
-	else if (args != NULL)
-		printf(" ");
+	if (n <= 0)
+		return (0);
+	while (n - 1 != 0 && *s1 == *s2 && (*s1 != '\0' || *s2 != '\0'))
+	{
+		n--;
+		s1++;
+		s2++;
+	}
+	if (*s1 != *s2)
+		return (*(unsigned char *)s1 - *(unsigned char *)s2);
 	return (0);
 }
