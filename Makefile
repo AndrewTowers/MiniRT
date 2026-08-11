@@ -1,5 +1,5 @@
 NAME = miniRT
-FLAGS = -Wall -Werror -Wextra -Imlx -lm
+FLAGS = -Wall -Werror -Wextra -Imlx
 SRC = main.c \
 	parser.c \
 	utils.c
