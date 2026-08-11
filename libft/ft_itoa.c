@@ -3,57 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andtruji <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/14 15:35:21 by bsiguenc          #+#    #+#             */
-/*   Updated: 2025/04/21 14:59:06 by bsiguenc         ###   ########.fr       */
+/*   Created: 2025/04/11 07:27:03 by andtruji          #+#    #+#             */
+/*   Updated: 2025/04/11 07:27:05 by andtruji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	count_digits(int n)
+int	ft_cantidad(int n)
 {
-	int	size;
-	int	neg;
+	int	c;
 
-	size = 0;
-	neg = 0;
-	if (n == 0)
-		return (1);
-	if (n < 0)
-		neg = 1;
+	c = 0;
+	if (n <= 0)
+		c = 1;
 	while (n != 0)
 	{
 		n /= 10;
-		size++;
+		c++;
 	}
-	return (size + neg);
+	return (c);
 }
 
 char	*ft_itoa(int n)
 {
-	long	nb;
-	size_t	size;
+	int		l;
 	char	*s;
+	long	nn;
 
-	nb = n;
-	size = count_digits(n);
-	s = malloc (sizeof(char) * (size + 1));
+	l = ft_cantidad(n);
+	s = malloc((l + 1) * sizeof(char));
 	if (!s)
-		return (NULL);
-	s[size] = '\0';
-	if (nb < 0)
+		return (0);
+	s[l] = '\0';
+	nn = n;
+	if (nn < 0)
 	{
 		s[0] = '-';
-		nb = -nb;
+		nn = -nn;
 	}
-	if (nb == 0)
+	if (nn == 0)
 		s[0] = '0';
-	while (nb > 0)
+	while (nn > 0)
 	{
-		s[--size] = (nb % 10) + '0';
-		nb /= 10;
+		s[--l] = '0' + nn % 10;
+		nn /= 10;
 	}
 	return (s);
 }
+
+/*int	main(void)
+{
+	int	n = -159;
+	printf("%s", ft_itoa(n));
+	return (0);
+}*/

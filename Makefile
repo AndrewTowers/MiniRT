@@ -1,7 +1,8 @@
 NAME = miniRT
 FLAGS = -Wall -Werror -Wextra -Imlx
 SRC = main.c \
-	parser.c \
+	parser_params.c \
+	parser_file.c \
 	utils.c
 
 OBJ_SRC = $(SRC:.c=.o)
@@ -21,7 +22,6 @@ clean:
 	make -C libft clean
 	rm -rf $(OBJ_SRC)
 fclean: clean
-# 	make -C minilibx-linux fclean
 	make -C libft fclean
 	rm -rf $(NAME)
 re: fclean all

@@ -3,27 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andtruji <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/10 11:07:58 by bsiguenc          #+#    #+#             */
-/*   Updated: 2025/04/10 11:39:34 by bsiguenc         ###   ########.fr       */
+/*   Created: 2025/04/08 15:31:10 by andtruji          #+#    #+#             */
+/*   Updated: 2025/04/08 15:31:46 by andtruji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strrchr(const char *string, int c)
 {
-	size_t	i;
+	size_t		i;
+	char		*ptr;
 
-	i = ft_strlen(s);
-	while (i > 0)
+	i = 0;
+	ptr = NULL;
+	while (string[i] != '\0')
 	{
-		if ((char) c == s[i])
-			return ((char *)s + i);
-		i--;
+		if ((unsigned char)string[i] == (unsigned char)c)
+			ptr = (char *)&string[i];
+		i++;
 	}
-	if ((char) c == s[i])
-		return ((char *) s);
-	return (NULL);
+	if ((unsigned char)c == '\0')
+		return ((char *)&string[i]);
+	return (ptr);
 }
+
+/*int main(void)
+{
+  char buffer1[40] = "co.m.puter. prog.ream.....,";
+  char * ptr;
+  int    ch = '.';
+ 
+  ptr = ft_strrchr( buffer1, ch );
+  printf( "The last occurrence of %c in '%s' is '%s'\n",
+            ch, buffer1, ptr );
+}*/

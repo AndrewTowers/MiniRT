@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andtruji <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/07 16:54:25 by andtruji          #+#    #+#             */
-/*   Updated: 2025/04/07 16:54:28 by andtruji         ###   ########.fr       */
+/*   Created: 2025/12/16 15:57:06 by bsiguenc          #+#    #+#             */
+/*   Updated: 2025/12/16 15:57:52 by bsiguenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *str, int c, size_t n)
+char	*ft_strcpy(char *dest, const char *src)
 {
-	unsigned char	*s;
+	char	*d;
 
-	s = str;
-	while (n)
+	d = dest;
+	while (*src != '\0')
 	{
-		*s = (unsigned char) c;
-		s++;
-		n--;
+		*d = *src;
+		d++;
+		src++;
 	}
-	return (str);
+	*d = '\0';
+	return (dest);
 }
-
-/*int	main()
-{
-	char str[] = "hola :)";
-	ft_memset(str, 'Z', 4);
-	printf("String after memset(): %s\n", str);
-	return 0;
-}*/

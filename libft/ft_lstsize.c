@@ -1,35 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andtruji <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/07 16:54:25 by andtruji          #+#    #+#             */
-/*   Updated: 2025/04/07 16:54:28 by andtruji         ###   ########.fr       */
+/*   Created: 2025/04/11 12:47:29 by andtruji          #+#    #+#             */
+/*   Updated: 2025/04/11 12:47:31 by andtruji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *str, int c, size_t n)
+int	ft_lstsize(t_list *lst)
 {
-	unsigned char	*s;
+	int	i;
 
-	s = str;
-	while (n)
+	i = 0;
+	while (lst)
 	{
-		*s = (unsigned char) c;
-		s++;
-		n--;
+		lst = lst->next;
+		i++;
 	}
-	return (str);
+	return (i);
 }
 
-/*int	main()
+/*int main(void)
 {
-	char str[] = "hola :)";
-	ft_memset(str, 'Z', 4);
-	printf("String after memset(): %s\n", str);
+	t_list *head = NULL;
+	t_list *new_node;
+	new_node = ft_lstnew((void *)42);
+	ft_lstadd_front(&head, new_node);
+	new_node = ft_lstnew((void *)36);
+	ft_lstadd_front(&head, new_node);
+
+	int size = ft_lstsize(head);
+	printf("El tamaño de la lista es: %d\n", size);
+	while (head)
+	{
+		t_list *temp = head;
+		head = head->next;
+		free(temp);
+	}
 	return 0;
 }*/

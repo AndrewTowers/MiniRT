@@ -3,34 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andtruji <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/14 12:06:06 by bsiguenc          #+#    #+#             */
-/*   Updated: 2025/06/23 17:49:44 by bsiguenc         ###   ########.fr       */
+/*   Created: 2025/04/08 16:37:39 by andtruji          #+#    #+#             */
+/*   Updated: 2025/04/08 16:37:41 by andtruji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *s1, const char *s2, size_t len)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	size_t	i;
 	size_t	j;
 
 	i = 0;
-	if (*s2 == '\0')
-		return ((char *)s1);
-	while (i < len && s1[i])
+	if (*little == '\0')
+		return ((char *)big);
+	while (i < len && *big)
 	{
 		j = 0;
-		if (s1[i] == s2[j])
-		{
-			while ((i + j) < len && s1[i + j] == s2[j] && s1[i + j] != '\0')
-				j++;
-			if (s2[j] == '\0')
-				return ((char *)s1 + i);
-		}
+		while (little[j] && little[j] == big[i + j] && (i + j) < len)
+			j++;
+		if (little[j] == '\0')
+			return ((char *)big + i);
 		i++;
 	}
-	return (NULL);
+	return (0);
 }
+
+/*int main(void)
+{
+	const char *str = "Holmun a mundo cruel";
+	const char *find = "mundo";
+	char *res = ft_strnstr(str, find, 15);
+
+	if (res)
+		printf("Encontrado: %s\n", res);
+	else
+		printf("No se encontró\n");
+
+	return 0;
+}*/

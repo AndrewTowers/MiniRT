@@ -1,42 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andtruji <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/08 18:07:45 by andtruji          #+#    #+#             */
-/*   Updated: 2025/04/08 18:07:48 by andtruji         ###   ########.fr       */
+/*   Created: 2025/04/11 13:03:04 by andtruji          #+#    #+#             */
+/*   Updated: 2025/04/11 13:03:07 by andtruji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *nptr)
-{
-	int	i;
-	int	n;
-	int	s;
+#include "libft.h"
 
-	i = 0;
-	n = 0;
-	s = 1;
-	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == ' ')
-		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	t_list	*temp;
+
+	if (!lst || !new)
+		return ;
+	if (*lst == NULL)
 	{
-		if (nptr[i] == '-')
-			s = -1;
-		i++;
+		*lst = new;
+		return ;
 	}
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		n = n * 10 + (nptr[i] - '0');
-		i++;
-	}
-	return (n * s);
+	temp = *lst;
+	while (temp->next != NULL)
+		temp = temp->next;
+	temp->next = new;
 }
-
-/*int	main(void)
-{
-	char c[] = "--1";
-	printf("%d", ft_atoi(c));
-}*/

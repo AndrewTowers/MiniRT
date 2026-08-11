@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andtruji <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/15 15:46:08 by bsiguenc          #+#    #+#             */
-/*   Updated: 2025/04/21 15:00:04 by bsiguenc         ###   ########.fr       */
+/*   Created: 2025/04/11 10:34:32 by andtruji          #+#    #+#             */
+/*   Updated: 2025/04/11 10:34:34 by andtruji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,29 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
+	long	nn;
 	char	c;
 
-	if (n == -2147483648)
+	nn = (long)n;
+	if (nn < 0)
 	{
-		write(fd, "-2147483648", 11);
+		nn = -nn;
+		write (fd, "-", 1);
+	}
+	if (nn == 0)
+	{
+		write (fd, "0", 1);
 		return ;
 	}
-	else if (n < 0)
-	{
-		write(fd, "-", 1);
-		n = -n;
-	}
-	if (n / 10 > 0)
-		ft_putnbr_fd(n / 10, fd);
-	c = n % 10 + '0';
-	write(fd, &c, 1);
+	if (nn > 9)
+		ft_putnbr_fd(nn / 10, fd);
+	c = '0' + (nn % 10);
+	write (fd, &c, 1);
 }
+
+/*int	main(void)
+{
+	int	num = 2;
+	ft_putnbr_fd(num, 1);
+	return 0;
+}*/

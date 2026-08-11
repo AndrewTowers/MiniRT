@@ -3,18 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andtruji <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/10 10:39:05 by bsiguenc          #+#    #+#             */
-/*   Updated: 2025/04/10 11:28:49 by bsiguenc         ###   ########.fr       */
+/*   Created: 2025/04/08 14:29:02 by andtruji          #+#    #+#             */
+/*   Updated: 2025/04/08 14:29:05 by andtruji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft.h"
 
 int	ft_toupper(int c)
 {
 	if (c >= 'a' && c <= 'z')
-		c -= 32;
+		return (c - 32);
 	return (c);
 }
+
+/*int	main(void)
+{
+	char l = '8';
+	char u = ft_toupper(l);
+	printf("%c in uppercase is %c", l, u);
+	return (0);
+}*/

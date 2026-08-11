@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andtruji <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/07 16:54:25 by andtruji          #+#    #+#             */
-/*   Updated: 2025/04/07 16:54:28 by andtruji         ###   ########.fr       */
+/*   Created: 2026/02/25 01:23:48 by blas              #+#    #+#             */
+/*   Updated: 2026/02/25 01:23:52 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *str, int c, size_t n)
+char	*ft_strndup(const char *strin, size_t n)
 {
-	unsigned char	*s;
+	char	*s;
+	size_t	i;
 
-	s = str;
-	while (n)
+	if (!strin)
+		return (NULL);
+	s = malloc((n + 1) * sizeof(char));
+	if (!s)
+		return (NULL);
+	i = 0;
+	while (i < n && strin[i] != '\0')
 	{
-		*s = (unsigned char) c;
-		s++;
-		n--;
+		s[i] = strin[i];
+		i++;
 	}
-	return (str);
+	s[i] = '\0';
+	return (s);
 }
-
-/*int	main()
-{
-	char str[] = "hola :)";
-	ft_memset(str, 'Z', 4);
-	printf("String after memset(): %s\n", str);
-	return 0;
-}*/

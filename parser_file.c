@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   parser_file.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andtruji <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/07 16:50:16 by andtruji          #+#    #+#             */
-/*   Updated: 2025/04/07 16:50:19 by andtruji         ###   ########.fr       */
+/*   Created: 2026/08/11 12:30:40 by bsiguenc          #+#    #+#             */
+/*   Updated: 2026/08/11 13:08:51 by bsiguenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "mini_rt.h"
 
-size_t	ft_strlen(const char *s)
+int	parse_file(t_data *dt)
 {
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
+	
 }

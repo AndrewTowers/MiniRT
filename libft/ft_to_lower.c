@@ -1,43 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   to_lower.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andtruji <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/09 14:37:03 by andtruji          #+#    #+#             */
-/*   Updated: 2025/04/09 14:37:07 by andtruji         ###   ########.fr       */
+/*   Created: 2025/04/08 15:02:00 by andtruji          #+#    #+#             */
+/*   Updated: 2025/04/08 15:02:02 by andtruji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strjoin(char const *s1, char const *s2)
+int	ft_tolower(int c)
 {
-	char	*c;
-	size_t	i;
-	size_t	j;
-
-	if (!s2 || !s1)
-		return (NULL);
-	c = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (!c)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (s1[i] != '\0')
-		c[j++] = s1[i++];
-	i = 0;
-	while (s2[i] != '\0')
-		c[j++] = s2[i++];
-	c[j] = '\0';
+	if (c >= 'A' && c <= 'Z')
+		return (c + 32);
 	return (c);
 }
 
 /*int	main(void)
 {
-	char	s1[]= "There are ";
-	char	s2[]= "a lot of people.";
-	printf("%s", ft_strjoin(s1, s2));
+	char l = 'a';
+	char u = ft_tolower(l);
+	printf("%c in lowercase is %c", l, u);
 	return (0);
 }*/

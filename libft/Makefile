@@ -1,87 +1,49 @@
-CC=cc
-CFLAGS=-Wall -Wextra -Werror
-NAME=libft.a
-SRC=ft_isalpha.c \
-	ft_isdigit.c \
-	ft_isalnum.c \
-	ft_isascii.c \
-	ft_isprint.c \
-	ft_strlen.c \
-	ft_memset.c \
-	ft_bzero.c \
-	ft_memcpy.c \
-	ft_memmove.c \
-	ft_strlcat.c \
-	ft_strlcpy.c \
-	ft_toupper.c \
-	ft_tolower.c \
-	ft_strchr.c \
-	ft_strrchr.c \
-	ft_strncmp.c \
-	ft_memchr.c \
-	ft_memcmp.c \
-	ft_strnstr.c \
-	ft_atoi.c \
-	ft_calloc.c \
-	ft_strdup.c \
-	ft_strjoin.c \
-	ft_strtrim.c \
-	ft_substr.c \
-	ft_itoa.c \
-	ft_split.c \
-	ft_strmapi.c \
-	ft_striteri.c \
-	ft_putchar_fd.c \
-	ft_putstr_fd.c \
-	ft_putendl_fd.c \
-	ft_putnbr_fd.c \
+NAME = libft.a
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -I.
 
-SRC_BONUS= ft_lstnew_bonus.c \
-	ft_lstadd_front_bonus.c \
-	ft_lstsize_bonus.c \
-	ft_lstlast_bonus.c \
-	ft_lstadd_back_bonus.c \
-	ft_lstdelone_bonus.c \
-	ft_lstclear_bonus.c \
-	ft_lstiter_bonus.c \
-	ft_lstmap_bonus.c
+SRCS = \
+	ft_putchar_fd.c ft_putnbr_fd.c ft_split.c \
+	ft_strjoin.c ft_strtrim.c ft_itoa.c \
+	ft_putendl_fd.c ft_putstr_fd.c ft_striteri.c \
+	ft_strmapi.c ft_substr.c ft_calloc.c ft_isascii.c \
+	ft_memchr.c ft_memmove.c ft_strdup.c ft_strlen.c \
+	ft_strrchr.c ft_atoi.c ft_isalnum.c ft_isdigit.c \
+	ft_memcmp.c ft_memset.c ft_strlcat.c ft_strncmp.c \
+	ft_to_lower.c ft_bzero.c ft_isalpha.c ft_isprint.c \
+	ft_memcpy.c ft_strchr.c ft_strlcpy.c ft_strnstr.c \
+	ft_toupper.c ft_printf.c ft_printf_utils.c ft_printf_utils2.c \
+	get_next_line.c get_next_line_utils.c ft_atoi_base.c ft_strndup.c ft_strcmp.c \
+	ft_strcat.c ft_strcpy.c ft_free_split.c
 
-SRC_PRINTF= ft_printf/ft_printf.c \
-	ft_printf/src/ft_utils.c\
-	ft_printf/src/ft_utils2.c
+BONUS_SRC = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
+			ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c \
+			ft_lstclear.c ft_lstiter.c ft_lstmap.c
 
-OBJ= $(SRC:.c=.o)
-OBJ_BONUS= $(SRC_BONUS:.c=.o)
-OBJ_PRINTF= $(SRC_PRINTF:.c=.o)
-ARFLAGS= rcs
+
+SRC = $(SRCS)
+
+OBJ = $(SRC:.c=.o)
+
+BONUS_OBJ = $(BONUS_SRC:.c=.o)
 
 all: $(NAME)
 
+$(NAME): $(OBJ)
+	ar rcs $(NAME) $(OBJ)
+
+bonus: $(OBJ) $(BONUS_OBJ)
+	@ar rcs $(NAME) $(OBJ) $(BONUS_OBJ)
+
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-ft_printf/%.c : ft_printf/%.o
-	make -C ft_printf all
-	$(CC) $(FLAGS) -c $< -o $@
-
-$(NAME): $(OBJ) $(OBJ_PRINTF)
-	make -C ft_printf all
-	ar $(ARFLAGS) $(NAME) $(OBJ) $(OBJ_PRINTF)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ) $(OBJ_BONUS)
-	make -C ft_printf clean
+	@rm -f $(OBJ) $(BONUS_OBJ)
 
 fclean: clean
-	rm -f $(NAME)
-	make -C ft_printf fclean
-
-fclean_bonus: clean_bonus
-	rm -f $(NAME)
-
-bonus: $(OBJ_BONUS) $(OBJ)
-	ar $(ARFLAGS) $(NAME) $(OBJ) $(OBJ_BONUS)
+	@rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean bonus fclean re
+.PHONY: all clean fclean re bonus

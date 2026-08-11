@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andtruji <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/15 15:42:50 by bsiguenc          #+#    #+#             */
-/*   Updated: 2025/04/21 15:00:00 by bsiguenc         ###   ########.fr       */
+/*   Created: 2025/04/11 10:20:34 by andtruji          #+#    #+#             */
+/*   Updated: 2025/04/11 10:20:37 by andtruji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,29 @@
 
 void	ft_putendl_fd(char *s, int fd)
 {
-	while (*s != '\0')
+	if (!s)
+		return ;
+	while (*s)
 	{
-		write(fd, s, 1);
+		write (fd, s, 1);
 		s++;
 	}
-	write(fd, "\n", 1);
+	write (fd, "\n", 1);
 }
+
+/*int	main(void)
+{
+	// Caso 1: Cadena válida
+	char *str1 = "Hola Mundo!";
+	ft_putendl_fd(str1, 1);  // Salida esperada: "Hola Mundo!\n"
+
+	// Caso 2: Cadena vacía
+	char *str2 = " .";
+	ft_putendl_fd(str2, 1);  // Salida esperada: "\n" (solo el salto de línea)
+
+	// Caso 3: Cadena NULL
+	char *str3 = NULL;
+	ft_putendl_fd(str3, 1);  // No debe imprimir nada
+
+	return 0;
+}*/

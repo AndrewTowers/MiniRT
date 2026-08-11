@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_free_split.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andtruji <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/07 16:54:25 by andtruji          #+#    #+#             */
-/*   Updated: 2025/04/07 16:54:28 by andtruji         ###   ########.fr       */
+/*   Created: 2026/02/25 01:26:16 by blas              #+#    #+#             */
+/*   Updated: 2026/02/25 01:26:19 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *str, int c, size_t n)
+void	ft_free_split(char **split)
 {
-	unsigned char	*s;
+	int	i;
 
-	s = str;
-	while (n)
+	if (!split)
+		return ;
+	i = 0;
+	while (split[i])
 	{
-		*s = (unsigned char) c;
-		s++;
-		n--;
+		free(split[i]);
+		i++;
 	}
-	return (str);
+	free(split);
 }
-
-/*int	main()
-{
-	char str[] = "hola :)";
-	ft_memset(str, 'Z', 4);
-	printf("String after memset(): %s\n", str);
-	return 0;
-}*/

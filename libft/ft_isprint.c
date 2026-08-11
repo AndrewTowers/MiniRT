@@ -3,18 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andtruji <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/08 14:20:55 by bsiguenc          #+#    #+#             */
-/*   Updated: 2025/04/10 11:28:17 by bsiguenc         ###   ########.fr       */
+/*   Created: 2025/04/07 16:47:20 by andtruji          #+#    #+#             */
+/*   Updated: 2025/04/07 16:47:24 by andtruji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_isprint(int c)
+int	ft_isprint(int arg)
 {
-	if (c >= 32 && c <= 126)
+	if (arg >= 32 && arg <= 126)
 		return (1);
 	return (0);
 }
+
+/*int main(void)
+{
+	char c = '\n';
+	if (ft_isascii(c)) {
+	printf("%c exits", c);
+	} else {
+	printf("%c does not exist", c);
+	}
+}*/

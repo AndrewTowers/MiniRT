@@ -3,30 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andtruji <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/14 12:04:51 by bsiguenc          #+#    #+#             */
-/*   Updated: 2025/04/21 15:01:00 by bsiguenc         ###   ########.fr       */
+/*   Created: 2025/04/09 16:06:33 by andtruji          #+#    #+#             */
+/*   Updated: 2025/04/09 16:06:35 by andtruji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+/*#include <stdio.h>
 
-char	*ft_strdup(const char *s)
+size_t	ft_strlen(const char *str)
 {
-	char	*reply;
-	size_t	len;
 	size_t	i;
 
-	len = ft_strlen(s);
 	i = 0;
-	reply = (char *) ft_calloc(len + 1, sizeof(char));
-	if (!reply)
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}*/
+
+#include "libft.h"
+
+char	*ft_strdup(const char *string)
+{
+	char	*s;
+	size_t	i;
+
+	if (!string)
 		return (NULL);
-	while (s[i] != '\0')
+	s = malloc((ft_strlen(string) + 1) * sizeof(char));
+	if (!s)
+		return (NULL);
+	i = 0;
+	while (string[i] != '\0')
 	{
-		reply[i] = s[i];
+		s[i] = string[i];
 		i++;
 	}
-	return (reply);
+	s[i] = '\0';
+	return (s);
 }
+
+/*int	main(void)
+{
+	char *string = "this is a copy";
+	char *newstr;
+	if ((newstr = ft_strdup(string)) != NULL)
+	printf("The new string is: %s\n", newstr);
+	return 0;
+}*/
