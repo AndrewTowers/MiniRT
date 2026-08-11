@@ -11,8 +11,9 @@ all: $(NAME)
 
 $(NAME): $(OBJ_SRC)
 	make -C minilibx-linux
-	make -C libft
-	cc $(FLAGS) $(OBJ_SRC) libft/libft.a -o $(NAME)
+	make -C libft bonus
+	cc $(FLAGS) $(OBJ_SRC) -o $(NAME) libft/libft.a \
+	-L minilibx-linux/ -lmlx -lXext -lX11 -lm
 %.o: %.c
 	cc $(FLAGS) -c $< -o $@
 clean:

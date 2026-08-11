@@ -6,7 +6,7 @@
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 14:02:05 by bsiguenc          #+#    #+#             */
-/*   Updated: 2026/08/05 16:19:35 by blas             ###   ########.fr       */
+/*   Updated: 2026/08/10 23:54:50 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,18 @@ typedef struct s_dt_mlx
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-} t_dt_mlx;
+}	t_dt_mlx;
 
 typedef struct s_data
 {
 	void	*mlx;
 	void	*mlx_win;
 	int		fd_rt;
-} t_data;
+}	t_data;
 
-int	check_args(char **args, char *extension, int	count, int ignore);
-int ret_str(char *str, int status);
-char *ft_findchar(char *str, char c);
-char *ft_reverse_findchar(char *str, char c);
+int		check_args(char **args, char *extension, int count);
+int		ret_str(char *str, int status);
+char	*ft_findchar(char *str, char c);
+char	*ft_reverse_findchar(char *str, char c);
 
 #endif
