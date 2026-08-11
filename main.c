@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/05 15:59:00 by blas              #+#    #+#             */
-/*   Updated: 2026/08/11 13:02:45 by bsiguenc         ###   ########.fr       */
+/*   Updated: 2026/08/11 14:04:01 by andtruji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@ int	init_data(t_data *dt, char *args)
 	dt->fd_rt = open(args[1], O_RDONLY);
 	if (dt->fd_rt < 0)
 		return (1);
+	return (0);
+}
+
+int	close_window(t_data *dt)
+{
+	mlx_destroy_window(dt->mlx, dt->mlx_win);
+	exit(0);
 	return (0);
 }
 
