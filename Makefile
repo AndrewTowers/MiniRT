@@ -22,38 +22,36 @@ MAKEFLAGS += --silent
 all: $(LIBFT) $(MLX_LIB) $(NAME)
 
 $(LIBFT):
-	@make bonus -C $(DIR_LIBFT)
-	@echo "libft compiled"
+	make bonus -C $(DIR_LIBFT)
+	echo "libft compiled"
 
 $(DIR_OBJS):
-	@mkdir -p $(DIR_OBJS)
+	mkdir -p $(DIR_OBJS)
 
 $(MLX_DIR):
-	@git clone https://github.com/42Paris/minilibx-linux.git $(MLX_DIR)
-	@echo "minilibx-linux cloned"
+	git clone -q https://github.com/42Paris/minilibx-linux.git $(MLX_DIR)
+	echo "Minilibx-linux cloned"
 
 $(MLX_LIB): $(MLX_DIR)
-	@make -C $(MLX_DIR) CC=gcc
+	cd $(MLX_DIR) && ./configure
 
 $(DIR_OBJS)/%.o: %.c | $(DIR_OBJS)
-	@$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME): $(OBJS) $(MLX_LIB) $(LIBFT)
-	@$(CC) $(FLAGS) $(OBJS) -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -L$(DIR_LIBFT) -lft -o $(NAME)
-	@echo "MiniRT compiled"
-
+	$(CC) $(FLAGS) $(OBJS) -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -L$(DIR_LIBFT) -lft -o $(NAME)
+	echo "MiniRT compiled"
 
 clean:
-	@make -C $(MLX_DIR) clean
-	@make -C $(DIR_LIBFT) clean
-	@rm -rf $(OBJS)
-	@rm -rf $(DIR_OBJS)
-	@echo "MiniRT cleaned"
+	make -C $(DIR_LIBFT) clean
+	rm -rf $(OBJS)
+	rm -rf $(DIR_OBJS)
 
 fclean: clean
-	@make -C $(DIR_LIBFT) fclean
-	@rm -rf $(NAME)
-	@echo "MiniRT fcleaned"
+	make -C $(DIR_LIBFT) fclean
+	rm -rf $(MLX_DIR)
+	rm -rf $(NAME)
+	echo "MiniRT cleaned"
 
 re: fclean all
 
