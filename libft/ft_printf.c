@@ -15,7 +15,7 @@
 int	ft_pointer(void *p)
 {
 	return (write(1, "0x", 2)
-		+ ft_base("0123456789abcdef", (unsigned long) p));
+		+ ft_base("0123456789abcdef", (unsigned long long) p));
 }
 
 int	ft_format(char const **format, va_list args)

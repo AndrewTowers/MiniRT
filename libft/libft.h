@@ -108,7 +108,8 @@ char	*ft_strndup(const char *strin, size_t n);
 char	*ft_strcpy(char *dest, const char *src);
 char	*ft_strcat(char *dest, const char *src);
 int		ft_strcmp(const char *s1, const char *s2);
-// void	ft_free_split_2(char **split, ssize_t n);
 void	ft_free_split(char **split);
+
+double	ft_atof(const char *nptr);
 
 #endif
