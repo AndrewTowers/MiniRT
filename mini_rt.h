@@ -121,4 +121,10 @@ char	*ft_findchar(char *str, char c);
 char	*ft_reverse_findchar(char *str, char c);
 int		parse_file(t_data *dt);
 
+//parsing elements
+int		parse_line(char *line, t_data *dt);
+int		parse_vec(char *str, t_pos *vec);
+int		parse_rgb(char *rgb_str, t_rgb *rgb);
+int		parse_diameter_height(char *dm_hg, float *dmt_hg);
+
 #endif
