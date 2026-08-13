@@ -3,6 +3,8 @@ CC = cc
 FLAGS = -Wall -Werror -Wextra
 SRCS = main.c \
 	parser.c parse_elements.c parse_component.c \
+	parser_params.c \
+	parser_file.c \
 	utils.c
 
 MLX_DIR = minilibx-linux

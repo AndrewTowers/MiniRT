@@ -12,10 +12,10 @@
 
 #include "mini_rt.h"
 
+// free(dt->figure.type)
 void	end_data(t_data *dt, int err, char *sterr)
 {
 	close(dt->fd_rt);
-	// free(dt->figure.type)
 	if (err)
 	{
 		ft_printf("%s", sterr);
@@ -23,11 +23,12 @@ void	end_data(t_data *dt, int err, char *sterr)
 	}
 }
 
-int	init_data(t_data *dt, char *args)
+int	init_data(t_data *dt, char **args)
 {
 	dt->fd_rt = open(args[1], O_RDONLY);
 	if (dt->fd_rt < 0)
 		return (1);
+	parse_file(dt);
 	return (0);
 }
 
