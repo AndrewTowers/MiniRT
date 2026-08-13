@@ -1,17 +1,80 @@
 #include "mini_rt.h"
 
-int	parse_vec(char *str, t_pos *vec)
+int parse_sphere(char *args, t_data *dt)
 {
-	char	**split;
+	char		**parts;
+	t_sphere	*sp;
+	t_object	*obj;
 
-	split = ft_split(str, ',');
-	if (!split || !split[0] || !split[1] || !split[2] || split[3])
-		return (1);
-	vec->x = ft_atof(split[0]);
-	vec->y = ft_atof(split[1]);
-	vec->z = ft_atof(split[2]);
-	ft_free_split(split);
-	return (0);
+	parts = ft_split(args, ' ');
+	if (!parts || !parts[0] || !parts[1] || !parts[2] || parts[3])
+		return (0);
+	sp = malloc(sizeof(t_sphere));
+	if (!sp)
+		return (0);
+	if (!parse_vec(parts[0], &sp->pos) || !parse_rgb(parts[2], &sp->rgb)
+		|| !parse_diameter(parts[1], &sp->diameter) )
+	{
+		free(sp);
+		ft_free_split(parts);
+		return (0);
+	}
+	obj = new_object(SPHERE, sp);
+	add_object(&dt->objects, obj);
+	ft_free_split(parts);
+	return (1);
+}
+
+int parse_plane(char *args, t_data *dt)
+{
+	char		**parts;
+	t_plane		*pl;
+	t_object	*obj;
+
+	parts = ft_split(args, ' ');
+	if (!parts || !parts[0] || !parts[1] || !parts[2] || parts[3])
+		return (0);
+	pl = malloc(sizeof(t_plane));
+	if (!pl)
+		return (0);
+	if (!parse_vec(parts[0], &pl->pos) || !parse_vec(parts[1], &pl->normal)
+		|| !parse_rgb(parts[2], &pl->rgb))
+	{
+		free(pl);
+		ft_free_split(parts);
+		return (0);
+	}
+	obj = new_object(PLANE, pl);
+	add_object(&dt->objects, obj);
+	ft_free_split(parts);
+	return (1);
+}
+
+int parse_cylinder(char *args, t_data *dt)
+{
+	char		**parts;
+	t_cylinder	*cy;
+	t_object	*obj;
+
+	parts = ft_split(args, ' ');
+	if (!parts || !parts[0] || !parts[1] || !parts[2] || !parts[3] || !parts[4] || parts[5])
+		return (0);
+	cy = malloc(sizeof(t_cylinder));
+	if (!cy)
+		return (0);
+	if (!parse_vec(parts[0], &cy->pos) || !parse_vec(parts[1], &cy->dir)
+		|| !parse_diameter_height(parts[2], &cy->diameter)
+		|| !parse_diameter_height(parts[3], &cy->height)
+		|| !parse_rgb(parts[4], &cy->rgb))
+	{
+		free(cy);
+		ft_free_split(parts);
+		return (0);
+	}
+	obj = new_object(CYLINDER, cy);
+	add_object(&dt->objects, obj);
+	ft_free_split(parts);
+	return (1);
 }
 
 int	parse_line(char *line, t_data *dt)
@@ -29,19 +92,4 @@ int	parse_line(char *line, t_data *dt)
 	else if (!ft_strncmp(line, "cy ", 3))
 		return (parse_cylinder(line + 3, dt));
 	return (0);
-}
-
-int parse_sphere(char *line, t_data *dt)
-{
-
-}
-
-int parse_plane(char *line, t_data *dt)
-{
-
-}
-
-int parse_cylinder(char *line, t_data *dt)
-{
-
 }

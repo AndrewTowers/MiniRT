@@ -2,7 +2,7 @@ NAME = miniRT
 CC = cc
 FLAGS = -Wall -Werror -Wextra
 SRCS = main.c \
-	parser.c \
+	parser.c parse_elements.c parse_component.c \
 	utils.c
 
 MLX_DIR = minilibx-linux
