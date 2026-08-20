@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_rt.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 14:02:05 by bsiguenc          #+#    #+#             */
-/*   Updated: 2026/08/20 15:09:35 by andtruji         ###   ########.fr       */
+/*   Updated: 2026/08/20 14:33:41 by bsiguenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,14 @@ typedef struct s_pos
 
 typedef struct s_aml
 {
+	int		save;
 	float	ratio;
 	t_rgb	rgb;
 }	t_aml;
 
 typedef struct s_cam
 {
+	int		save;
 	t_pos	pos;
 	t_pos	dir;
 	float	fov;
@@ -52,6 +54,7 @@ typedef struct s_cam
 
 typedef struct s_light
 {
+	int		save;
 	t_pos	pos;
 	float	ratio;
 	t_rgb	rgb;

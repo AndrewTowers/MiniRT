@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_elements.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/20 14:50:57 by bsiguenc          #+#    #+#             */
+/*   Updated: 2026/08/20 14:52:00 by bsiguenc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "mini_rt.h"
 
-int parse_sphere(char *args, t_data *dt)
+int	parse_sphere(char *args, t_data *dt)
 {
 	char		**parts;
 	t_sphere	*sp;
@@ -25,7 +37,7 @@ int parse_sphere(char *args, t_data *dt)
 	return (1);
 }
 
-int parse_plane(char *args, t_data *dt)
+int	parse_plane(char *args, t_data *dt)
 {
 	char		**parts;
 	t_plane		*pl;
@@ -50,7 +62,7 @@ int parse_plane(char *args, t_data *dt)
 	return (1);
 }
 
-int parse_cylinder(char *args, t_data *dt)
+int	parse_cylinder(char *args, t_data *dt)
 {
 	char		**parts;
 	t_cylinder	*cy;
