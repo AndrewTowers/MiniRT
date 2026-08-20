@@ -2,10 +2,10 @@ NAME = miniRT
 CC = cc
 FLAGS = -Wall -Werror -Wextra
 SRCS = main.c \
-	parser.c parse_elements.c parse_component.c \
-	parser_params.c \
-	parser_file.c \
-	utils.c
+	parse_elements.c parse_component.c \
+	parser/parser_params.c \
+	parser/parser_file.c \
+	utils/utils.c
 
 MLX_DIR = minilibx-linux
 MLX_LIB = $(MLX_DIR)/libmlx_Linux.a
@@ -37,6 +37,7 @@ $(MLX_LIB): $(MLX_DIR)
 	cd $(MLX_DIR) && ./configure
 
 $(DIR_OBJS)/%.o: %.c | $(DIR_OBJS)
+	@mkdir -p $(dir $@)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME): $(OBJS) $(MLX_LIB) $(LIBFT)
