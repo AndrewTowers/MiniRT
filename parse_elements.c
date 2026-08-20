@@ -25,7 +25,7 @@ int	parse_sphere(char *args, t_data *dt)
 	if (!sp)
 		return (0);
 	if (!parse_vec(parts[0], &sp->pos) || !parse_rgb(parts[2], &sp->rgb)
-		|| !parse_diameter(parts[1], &sp->diameter) )
+		|| !parse_diameter_n_height(parts[1], &sp->diameter) )
 	{
 		free(sp);
 		ft_free_split(parts);
@@ -74,7 +74,7 @@ int	parse_cylinder(char *args, t_data *dt)
 	cy = malloc(sizeof(t_cylinder));
 	if (!cy)
 		return (0);
-	if (!parse_vec(parts[0], &cy->pos) || !parse_vec(parts[1], &cy->dir)
+	if (!parse_vec(parts[0], &cy->pos) || !parse_vec(parts[1], &cy->axis)
 		|| !parse_diameter_height(parts[2], &cy->diameter)
 		|| !parse_diameter_height(parts[3], &cy->height)
 		|| !parse_rgb(parts[4], &cy->rgb))

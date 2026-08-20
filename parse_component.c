@@ -1,6 +1,6 @@
 #include "mini_rt.h"
 
-int parse_diameter_height(char *dm_hg, float *dmt_hg)
+int parse_diameter_n_height(char *dm_hg, float *dmt_hg)
 {
 	if (!dm_hg)
 		return (0);
@@ -17,10 +17,10 @@ int parse_rgb(char *rgb_str, t_rgb *rgb)
 	split = ft_split(rgb_str, ',');
 	if (!split || !split[0] || !split[1] || !split[2] || split[3])
 		return (0);
-	rgb->x = ft_atoi(split[0]);
-	rgb->y = ft_atoi(split[1]);
-	rgb->z = ft_atoi(split[2]);
-	if (rgb->x < 0 || rgb->x > 255 || rgb->y < 0 || rgb->y > 255 || rgb->z < 0 || rgb->z > 255)
+	rgb->r = ft_atoi(split[0]);
+	rgb->g = ft_atoi(split[1]);
+	rgb->b = ft_atoi(split[2]);
+	if (rgb->r < 0 || rgb->r > 255 || rgb->g < 0 || rgb->g > 255 || rgb->b < 0 || rgb->b > 255)
 	{
 		ft_free_split(split);
 		return (0);

@@ -40,7 +40,7 @@ typedef struct s_pos
 typedef struct s_aml
 {
 	int		save;
-	float	ratio_in_rang;
+	float	ratio;
 	t_rgb	rgb;
 }	t_aml;
 
@@ -56,7 +56,7 @@ typedef struct s_light
 {
 	int		save;
 	t_pos	pos;
-	float	radio;
+	float	ratio;
 	t_rgb	rgb;
 }	t_light;
 
@@ -128,6 +128,6 @@ int		parse_file(t_data *dt);
 int		parse_line(char *line, t_data *dt);
 int		parse_vec(char *str, t_pos *vec);
 int		parse_rgb(char *rgb_str, t_rgb *rgb);
-int		parse_diameter_height(char *dm_hg, float *dmt_hg);
+int		parse_diameter_n_height(char *dm_hg, float *dmt_hg);
 
 #endif
