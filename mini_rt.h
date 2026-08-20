@@ -6,7 +6,7 @@
 /*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 14:02:05 by bsiguenc          #+#    #+#             */
-/*   Updated: 2026/08/11 14:04:25 by andtruji         ###   ########.fr       */
+/*   Updated: 2026/08/20 15:09:35 by andtruji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_pos
 
 typedef struct s_aml
 {
-	float	ratio_in_rang;
+	float	ratio;
 	t_rgb	rgb;
 }	t_aml;
 
@@ -53,7 +53,7 @@ typedef struct s_cam
 typedef struct s_light
 {
 	t_pos	pos;
-	float	radio;
+	float	ratio;
 	t_rgb	rgb;
 }	t_light;
 
@@ -125,6 +125,6 @@ int		parse_file(t_data *dt);
 int		parse_line(char *line, t_data *dt);
 int		parse_vec(char *str, t_pos *vec);
 int		parse_rgb(char *rgb_str, t_rgb *rgb);
-int		parse_diameter_height(char *dm_hg, float *dmt_hg);
+int		parse_diameter_n_height(char *dm_hg, float *dmt_hg);
 
 #endif
