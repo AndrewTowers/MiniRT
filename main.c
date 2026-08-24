@@ -36,6 +36,7 @@ int	init_data(t_data *dt, char **args)
 	dt->aml.save = 0;
 	dt->cam.save = 0;
 	dt->light.save = 0;
+	dt->objects = NULL;
 	parse_file(dt);
 	return (0);
 }
