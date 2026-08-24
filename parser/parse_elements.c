@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 14:50:57 by bsiguenc          #+#    #+#             */
-/*   Updated: 2026/08/20 14:52:00 by bsiguenc         ###   ########.fr       */
+/*   Updated: 2026/08/25 01:34:39 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_rt.h"
+#include "../mini_rt.h"
 
 int	parse_sphere(char *args, t_data *dt)
 {

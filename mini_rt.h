@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_rt.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 14:02:05 by bsiguenc          #+#    #+#             */
-/*   Updated: 2026/08/20 14:33:41 by bsiguenc         ###   ########.fr       */
+/*   Updated: 2026/08/25 01:33:05 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@
 # include <sys/time.h>
 # include "libft/libft.h"
 # include "minilibx-linux/mlx.h"
+
+# ifndef WIDTH
+#  define WIDTH 1000
+# endif
+# ifndef HEIGHT
+#  define HEIGHT 800
+# endif
 
 typedef struct s_rgb
 {
@@ -129,5 +136,14 @@ int		parse_line(char *line, t_data *dt);
 int		parse_vec(char *str, t_pos *vec);
 int		parse_rgb(char *rgb_str, t_rgb *rgb);
 int		parse_diameter_n_height(char *dm_hg, float *dmt_hg);
+
+
+//draw
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	run_mlx(t_data *dt);
+int		create_trgb(int t, int r, int g, int b);
+int		get_r(int trgb);
+int		get_g(int trgb);
+int		get_b(int trgb);
 
 #endif

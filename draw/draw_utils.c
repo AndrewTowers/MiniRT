@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_split.c                                    :+:      :+:    :+:   */
+/*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/25 01:26:16 by blas              #+#    #+#             */
-/*   Updated: 2026/08/25 01:34:24 by blas             ###   ########.fr       */
+/*   Created: 2026/08/25 01:26:31 by blas              #+#    #+#             */
+/*   Updated: 2026/08/25 01:33:52 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../mini_rt.h"
 
-void	ft_free_split(char **split)
+int	create_trgb(int t, int r, int g, int b)
 {
-	int	i;
+	return (t << 24 | r << 16 | g << 8 | b);
+}
 
-	if (!split)
-		return ;
-	i = 0;
-	while (split[i])
-	{
-		free(split[i]);
-		i++;
-	}
-	free(split);
-	// *split = NULL;
+int	get_r(int trgb)
+{
+	return ((trgb >> 16) & 0xFF);
+}
+
+int	get_g(int trgb)
+{
+	return ((trgb >> 8) & 0xFF);
+}
+
+int	get_b(int trgb)
+{
+	return (trgb & 0xFF);
 }
