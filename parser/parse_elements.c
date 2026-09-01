@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parse_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 14:50:57 by bsiguenc          #+#    #+#             */
-/*   Updated: 2026/08/20 14:52:00 by bsiguenc         ###   ########.fr       */
+/*   Updated: 2026/08/31 17:34:05 by andtruji         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "mini_rt.h"
 
@@ -49,7 +49,7 @@ int	parse_plane(char *args, t_data *dt)
 	pl = malloc(sizeof(t_plane));
 	if (!pl)
 		return (0);
-	if (!parse_vec(parts[0], &pl->pos) || !parse_vec(parts[1], &pl->normal)
+	if (!parse_vec(parts[0], &pl->pos) || !parse_normalized_vec(parts[1], &pl->normal)
 		|| !parse_rgb(parts[2], &pl->rgb))
 	{
 		free(pl);
@@ -74,7 +74,7 @@ int	parse_cylinder(char *args, t_data *dt)
 	cy = malloc(sizeof(t_cylinder));
 	if (!cy)
 		return (0);
-	if (!parse_vec(parts[0], &cy->pos) || !parse_vec(parts[1], &cy->axis)
+	if (!parse_vec(parts[0], &cy->pos) || !parse_normalized_vec(parts[1], &cy->axis)
 		|| !parse_diameter_height(parts[2], &cy->diameter)
 		|| !parse_diameter_height(parts[3], &cy->height)
 		|| !parse_rgb(parts[4], &cy->rgb))
