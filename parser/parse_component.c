@@ -6,11 +6,11 @@
 /*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 11:47:01 by andtruji          #+#    #+#             */
-/*   Updated: 2026/08/31 15:45:19 by andtruji         ###   ########.fr       */
+/*   Updated: 2026/09/01 19:09:26 by andtruji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "mini_rt.h"
+#include "../mini_rt.h"
 
 int parse_diameter_n_height(char *dm_hg, float *dmt_hg)
 {

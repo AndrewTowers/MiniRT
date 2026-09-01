@@ -6,7 +6,7 @@
 /*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 14:02:05 by bsiguenc          #+#    #+#             */
-/*   Updated: 2026/08/31 15:36:03 by andtruji         ###   ########.fr       */
+/*   Updated: 2026/09/01 18:55:45 by andtruji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -133,11 +133,19 @@ int		parse_file(t_data *dt);
 
 //parsing elements
 int		parse_line(char *line, t_data *dt);
+int		parse_camera(char *args, t_data *dt);
+int		parse_ambient(char *args, t_data *dt);
+int		parse_light(char *args, t_data *dt);
+int		parse_sphere(char *args, t_data *dt);
+int		parse_plane(char *args, t_data *dt);
+int		parse_cylinder(char *args, t_data *dt);
 int		parse_vec(char *str, t_pos *vec);
 int		parse_rgb(char *rgb_str, t_rgb *rgb);
 int		parse_diameter_n_height(char *dm_hg, float *dmt_hg);
 int		parse_normalized_vec(char *str, t_pos *vec);
 
+t_object	*new_object(t_figures type, void *figure);
+void	add_object(t_object **head, t_object *new_obj);
 
 //draw
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);

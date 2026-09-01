@@ -6,22 +6,22 @@
 /*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 11:52:32 by andtruji          #+#    #+#             */
-/*   Updated: 2026/08/31 17:53:52 by andtruji         ###   ########.fr       */
+/*   Updated: 2026/09/01 18:53:10 by andtruji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "mini_rt.h"
 
-t_object    new_object(t_figures type, void *figure)
+t_object    *new_object(t_figures type, void *figure)
 {
-    t_object    obj;
+    t_object    *obj;
 
     obj = malloc(sizeof(t_object));
     if (!obj)
         return (NULL);
-    obj.type = type;
-    obj.figure = figure;
-    obj.next = NULL;
+    obj->type = type;
+    obj->figure = figure;
+    obj->next = NULL;
     return obj;
 }
 
