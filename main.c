@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/05 15:59:00 by blas              #+#    #+#             */
-/*   Updated: 2026/08/20 14:45:42 by bsiguenc         ###   ########.fr       */
+/*   Updated: 2026/08/25 01:33:32 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,7 @@ int	main(int argn, char **args)
 	if (check_args(args, ".rt", argn - 1) == -1)
 		return (ret_str("Error: Incorrect File Format\n", 1));
 	init_data(&dt, args);
-	// dt.mlx = mlx_init();
-	// if (!dt.mlx)
-		// return (1);
-	// dt.mlx_win = mlx_new_window(dt.mlx, 1000, 800, "MINIRT");
-	// if (!dt.mlx_win)
-	// 	return (1);
-	// mlx_hook(dt.mlx_win,17, 0, close_window, &dt);
-	// mlx_key_hook(dt.mlx_win, key_hook, &dt);
-	// mlx_loop(dt.mlx);
+	run_mlx(&dt);
 	end_data(&dt, 0, NULL);
 	return (0);
 }

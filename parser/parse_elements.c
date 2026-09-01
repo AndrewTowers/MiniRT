@@ -10,7 +10,7 @@
 /*                                                                            */
 /******************************************************************************/
 
-#include "mini_rt.h"
+#include "../mini_rt.h"
 
 int	parse_sphere(char *args, t_data *dt)
 {
