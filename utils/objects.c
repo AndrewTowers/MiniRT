@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   objects.c                                          :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 11:52:32 by andtruji          #+#    #+#             */
-/*   Updated: 2026/08/24 11:52:32 by andtruji         ###   ########.fr       */
+/*   Updated: 2026/08/31 17:53:52 by andtruji         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "mini_rt.h"
 
@@ -41,4 +41,17 @@ void    add_object(t_object **head, t_object *new_obj)
         current->next = new_obj;
     }
 }
-    
+
+void    free_objects(t_object *head)
+{
+    t_object    *curr;
+
+    while (head != NULL)
+    {
+        curr = head;
+        head = head->next;
+        if (curr->figure)
+            free(curr->figure);
+        free(curr);
+    }
+}

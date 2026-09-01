@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parse_component.c                                  :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 11:47:01 by andtruji          #+#    #+#             */
-/*   Updated: 2026/08/24 11:47:01 by andtruji         ###   ########.fr       */
+/*   Updated: 2026/08/31 15:45:19 by andtruji         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "mini_rt.h"
 
@@ -52,5 +52,30 @@ int	parse_vec(char *str, t_pos *vec)
 	vec->y = ft_atof(split[1]);
 	vec->z = ft_atof(split[2]);
 	ft_free_split(split);
+	return (1);
+}
+
+int	is_normalized(t_pos vec)
+{
+	float	magnitude;
+	float	epsilon;
+
+	epsilon = 0.0001;
+	magnitude = sqrtf(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
+	if (magnitude < 1.0 - epsilon || magnitude > 1.0 + epsilon)
+		return (0);
+	return (1);
+}
+
+int	parse_normalized_vec(char *str, t_pos *vec)
+{
+	if (!parse_vec(str, vec))
+		return (0);
+	if (vec->x < -1.0 || vec->x > 1.0
+		|| vec->y < -1.0 || vec->y > 1.0
+		|| vec->z < -1.0 || vec->z > 1.0)
+		return (0);
+	if (!is_normalized(*vec))
+		return (0);
 	return (1);
 }

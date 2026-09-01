@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   mini_rt.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 14:02:05 by bsiguenc          #+#    #+#             */
-/*   Updated: 2026/08/25 01:33:05 by blas             ###   ########.fr       */
+/*   Updated: 2026/08/31 15:36:03 by andtruji         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef MINI_RT_H
 # define MINI_RT_H
@@ -136,6 +136,7 @@ int		parse_line(char *line, t_data *dt);
 int		parse_vec(char *str, t_pos *vec);
 int		parse_rgb(char *rgb_str, t_rgb *rgb);
 int		parse_diameter_n_height(char *dm_hg, float *dmt_hg);
+int		parse_normalized_vec(char *str, t_pos *vec);
 
 
 //draw

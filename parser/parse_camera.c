@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parse_camera.c                                     :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 11:48:44 by andtruji          #+#    #+#             */
-/*   Updated: 2026/08/24 11:48:44 by andtruji         ###   ########.fr       */
+/*   Updated: 2026/08/31 15:36:27 by andtruji         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "mini_rt.h"
 
@@ -27,7 +27,7 @@ int parse_camera(char *args, t_data *dt)
     parts = ft_split(args, ' ');
     if (!parts || !parts[0] || !parts[1] || !parts[2] || parts[3])
         return (0);
-    if (!parse_vec(parts[0], &dt->cam.pos) || !parse_vec(parts[1], &dt->cam.dir)
+    if (!parse_vec(parts[0], &dt->cam.pos) || !parse_normalized_vec(parts[1], &dt->cam.dir)
         || !parse_fov(parts[2], &dt->cam.fov))
     {
         ft_free_split(parts);
