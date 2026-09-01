@@ -6,7 +6,7 @@
 /*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 14:50:57 by bsiguenc          #+#    #+#             */
-/*   Updated: 2026/08/31 17:34:05 by andtruji         ###   ########.fr       */
+/*   Updated: 2026/09/01 18:53:49 by andtruji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -75,8 +75,8 @@ int	parse_cylinder(char *args, t_data *dt)
 	if (!cy)
 		return (0);
 	if (!parse_vec(parts[0], &cy->pos) || !parse_normalized_vec(parts[1], &cy->axis)
-		|| !parse_diameter_height(parts[2], &cy->diameter)
-		|| !parse_diameter_height(parts[3], &cy->height)
+		|| !parse_diameter_n_height(parts[2], &cy->diameter)
+		|| !parse_diameter_n_height(parts[3], &cy->height)
 		|| !parse_rgb(parts[4], &cy->rgb))
 	{
 		free(cy);

@@ -6,11 +6,11 @@
 /*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 11:48:44 by andtruji          #+#    #+#             */
-/*   Updated: 2026/08/31 15:36:27 by andtruji         ###   ########.fr       */
+/*   Updated: 2026/09/01 19:09:31 by andtruji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "mini_rt.h"
+#include "../mini_rt.h"
 
 int parse_fov(char *fov_str, float *fov)
 {
