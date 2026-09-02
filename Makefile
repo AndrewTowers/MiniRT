@@ -2,9 +2,13 @@ NAME = miniRT
 CC = cc
 FLAGS = -Wall -Werror -Wextra
 SRCS = main.c \
-	parser/parse_elements.c parser/parse_component.c \
-	parser/parser_params.c \
-	parser/parser_file.c \
+	parser/parse_camera.c \
+	parser/parse_component.c \
+	parser/parse_elements.c \
+	parser/parse_light.c \
+	parser/parse_file.c \
+	parser/parse_params.c \
+	utils/objects.c \
 	utils/utils.c \
 	draw/draw_utils.c \
 	draw/draw.c
@@ -53,7 +57,6 @@ clean:
 
 fclean: clean
 	make -C $(DIR_LIBFT) fclean
-	rm -rf $(MLX_DIR)
 	rm -rf $(NAME)
 	echo "MiniRT cleaned"
 
