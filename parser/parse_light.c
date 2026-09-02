@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parse_light.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 11:48:53 by andtruji          #+#    #+#             */
-/*   Updated: 2026/09/01 19:08:57 by andtruji         ###   ########.fr       */
+/*   Updated: 2026/09/02 12:38:23 by blas             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../mini_rt.h"
 
@@ -24,7 +24,7 @@ int parse_ambient(char *args, t_data *dt)
 {
 	char	**parts;
 
-	parts = ft_split(args, ' ');
+	parts = splitter(args);
 	if (!parts || !parts[0] || !parts[1] || parts[2])
 		return (0);
 	if (!parse_ratio(parts[0], &dt->aml.ratio) || !parse_rgb(parts[1], &dt->aml.rgb))
@@ -40,7 +40,7 @@ int	parse_light(char *args, t_data *dt)
 {
 	char **parts;
 
-	parts = ft_split(args, ' ');
+	parts = splitter(args);
 	if (!parts || !parts[0] || !parts[1] || !parts[2] || parts[3])
 		return (0);
 	if (!parse_vec(parts[0], &dt->light.pos) || !parse_ratio(parts[1], &dt->light.ratio)

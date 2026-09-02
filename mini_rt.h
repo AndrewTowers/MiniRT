@@ -159,4 +159,10 @@ int		get_b(int trgb);
 
 
 int	close_window(t_data *dt);
+
+// Utils
+int	count_nodes(char *str);
+int	count_splits(char **strs);
+char	**split_realloc(char **strs, char *str, int i, int j);
+char	**splitter(char *str);
 #endif
