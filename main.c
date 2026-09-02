@@ -6,7 +6,7 @@
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/05 15:59:00 by blas              #+#    #+#             */
-/*   Updated: 2026/08/25 01:33:32 by blas             ###   ########.fr       */
+/*   Updated: 2026/09/02 12:25:10 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	end_data(t_data *dt, int err, char *sterr)
 {
 	if (dt->mlx && dt->mlx_win)
 	{
-		// mlx_destroy_window(dt->mlx, dt->mlx_win);
-		// free(dt->mlx);
+		mlx_destroy_window(dt->mlx, dt->mlx_win);
+		free(dt->mlx);
 	}
 	close(dt->fd_rt);
 	if (err)
@@ -41,12 +41,6 @@ int	init_data(t_data *dt, char **args)
 	return (0);
 }
 
-int	close_window(t_data *dt)
-{
-	mlx_destroy_window(dt->mlx, dt->mlx_win);
-	exit(0);
-	return (0);
-}
 
 int	key_hook(int keycode, t_data *dt)
 {

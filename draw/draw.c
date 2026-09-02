@@ -6,7 +6,7 @@
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 22:58:57 by blas              #+#    #+#             */
-/*   Updated: 2026/09/02 11:55:12 by blas             ###   ########.fr       */
+/*   Updated: 2026/09/02 12:20:35 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	run_mlx(t_data *dt)
 			&dt->img.line_length, &dt->img.endian);
 	do_paint(dt);
 	mlx_put_image_to_window(dt->mlx, dt->mlx_win, dt->img.img, 0, 0);
+	mlx_hook(dt->mlx_win, 17, 0, close_window, dt);
 	mlx_loop(dt->mlx);
 }
 

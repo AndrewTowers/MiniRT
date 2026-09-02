@@ -11,7 +11,8 @@ SRCS = main.c \
 	utils/objects.c \
 	utils/utils.c \
 	draw/draw_utils.c \
-	draw/draw.c
+	draw/draw.c \
+	close/closed.c
 
 MLX_DIR = minilibx-linux
 MLX_LIB = $(MLX_DIR)/libmlx_Linux.a
