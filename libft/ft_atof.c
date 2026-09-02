@@ -6,9 +6,11 @@
 /*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 11:51:15 by andtruji          #+#    #+#             */
-/*   Updated: 2026/08/31 17:57:36 by andtruji         ###   ########.fr       */
+/*   Updated: 2026/09/02 12:08:20 by andtruji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
+
+#include "libft.h"
 
 double	ft_atof(const char *nptr)
 {
