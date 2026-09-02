@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parse_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 14:50:57 by bsiguenc          #+#    #+#             */
-/*   Updated: 2026/09/01 18:53:49 by andtruji         ###   ########.fr       */
+/*   Updated: 2026/09/02 11:50:57 by blas             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../mini_rt.h"
 
@@ -89,19 +89,19 @@ int	parse_cylinder(char *args, t_data *dt)
 	return (1);
 }
 
-int	parse_line(char *line, t_data *dt)
+int	parse_line(char *line, t_data *dt, int size)
 {
-	if (!ft_strncmp(line, "A ", 2))
-		return (parse_ambient(line + 2, dt));
-	else if (!ft_strncmp(line, "C ", 2))
-		return (parse_camera(line + 2, dt));
-	else if (!ft_strncmp(line, "L ", 2))
-		return (parse_light(line + 2, dt));
-	else if (!ft_strncmp(line, "sp ", 3))
-		return (parse_sphere(line + 3, dt));
-	else if (!ft_strncmp(line, "pl ", 3))
-		return (parse_plane(line + 3, dt));
-	else if (!ft_strncmp(line, "cy ", 3))
-		return (parse_cylinder(line + 3, dt));
+	if (!ft_strncmp(line, "A ", size))
+		return (parse_ambient(line + size, dt));
+	else if (!ft_strncmp(line, "C ", size))
+		return (parse_camera(line + size, dt));
+	else if (!ft_strncmp(line, "L ", size))
+		return (parse_light(line + size, dt));
+	else if (!ft_strncmp(line, "sp ", size))
+		return (parse_sphere(line + size, dt));
+	else if (!ft_strncmp(line, "pl ", size))
+		return (parse_plane(line + size, dt));
+	else if (!ft_strncmp(line, "cy ", size))
+		return (parse_cylinder(line + size, dt));
 	return (0);
 }

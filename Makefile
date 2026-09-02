@@ -6,8 +6,8 @@ SRCS = main.c \
 	parser/parser_params.c \
 	parser/parser_file.c \
 	utils/utils.c \
-	draw_utils.c \
-	draw.c
+	draw/draw_utils.c \
+	draw/draw.c
 
 MLX_DIR = minilibx-linux
 MLX_LIB = $(MLX_DIR)/libmlx_Linux.a

@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   mini_rt.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 14:02:05 by bsiguenc          #+#    #+#             */
-/*   Updated: 2026/09/01 18:55:45 by andtruji         ###   ########.fr       */
+/*   Updated: 2026/09/02 11:51:47 by blas             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef MINI_RT_H
 # define MINI_RT_H
@@ -130,9 +130,10 @@ int		ret_str(char *str, int status);
 char	*ft_findchar(char *str, char c);
 char	*ft_reverse_findchar(char *str, char c);
 int		parse_file(t_data *dt);
+void	end_data(t_data *dt, int err, char *sterr);
 
 //parsing elements
-int		parse_line(char *line, t_data *dt);
+int		parse_line(char *line, t_data *dt, int size);
 int		parse_camera(char *args, t_data *dt);
 int		parse_ambient(char *args, t_data *dt);
 int		parse_light(char *args, t_data *dt);

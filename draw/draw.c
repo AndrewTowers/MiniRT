@@ -6,7 +6,7 @@
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 22:58:57 by blas              #+#    #+#             */
-/*   Updated: 2026/08/25 01:33:56 by blas             ###   ########.fr       */
+/*   Updated: 2026/09/02 11:55:12 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ void	run_mlx(t_data *dt)
 {
 	dt->mlx = mlx_init();
 	if (!dt->mlx)
-		return (1);
+		return ;
 	dt->mlx_win = mlx_new_window(dt->mlx, WIDTH, HEIGHT, "MiniRT");
 	if (!dt->mlx_win)
-		return (1);
+		return ;
 	dt->img.img = mlx_new_image(dt->mlx, WIDTH, HEIGHT);
 	dt->img.addr = mlx_get_data_addr(dt->img.img, &dt->img.bits_per_pixel,
 			&dt->img.line_length, &dt->img.endian);
