@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   mini_rt.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 14:02:05 by bsiguenc          #+#    #+#             */
-/*   Updated: 2026/09/02 12:35:55 by blas             ###   ########.fr       */
+/*   Updated: 2026/09/02 12:42:49 by andtruji         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef MINI_RT_H
 # define MINI_RT_H
@@ -147,6 +147,7 @@ int		parse_normalized_vec(char *str, t_pos *vec);
 
 t_object	*new_object(t_figures type, void *figure);
 void	add_object(t_object **head, t_object *new_obj);
+void	free_objects(t_object *head);
 
 //draw
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
