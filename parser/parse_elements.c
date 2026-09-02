@@ -6,7 +6,7 @@
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 14:50:57 by bsiguenc          #+#    #+#             */
-/*   Updated: 2026/09/02 11:50:57 by blas             ###   ########.fr       */
+/*   Updated: 2026/09/02 12:37:40 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	parse_sphere(char *args, t_data *dt)
 	t_sphere	*sp;
 	t_object	*obj;
 
-	parts = ft_split(args, ' ');
+	parts = splitter(args);
 	if (!parts || !parts[0] || !parts[1] || !parts[2] || parts[3])
 		return (0);
 	sp = malloc(sizeof(t_sphere));
@@ -43,7 +43,7 @@ int	parse_plane(char *args, t_data *dt)
 	t_plane		*pl;
 	t_object	*obj;
 
-	parts = ft_split(args, ' ');
+	parts = splitter(args);
 	if (!parts || !parts[0] || !parts[1] || !parts[2] || parts[3])
 		return (0);
 	pl = malloc(sizeof(t_plane));
@@ -68,7 +68,7 @@ int	parse_cylinder(char *args, t_data *dt)
 	t_cylinder	*cy;
 	t_object	*obj;
 
-	parts = ft_split(args, ' ');
+	parts = splitter(args);
 	if (!parts || !parts[0] || !parts[1] || !parts[2] || !parts[3] || !parts[4] || parts[5])
 		return (0);
 	cy = malloc(sizeof(t_cylinder));

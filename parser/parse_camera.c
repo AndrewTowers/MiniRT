@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parse_camera.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 11:48:44 by andtruji          #+#    #+#             */
-/*   Updated: 2026/09/01 19:09:31 by andtruji         ###   ########.fr       */
+/*   Updated: 2026/09/02 12:37:30 by blas             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../mini_rt.h"
 
@@ -24,7 +24,7 @@ int parse_camera(char *args, t_data *dt)
 {
     char    **parts;
 
-    parts = ft_split(args, ' ');
+    parts = splitter(args);
     if (!parts || !parts[0] || !parts[1] || !parts[2] || parts[3])
         return (0);
     if (!parse_vec(parts[0], &dt->cam.pos) || !parse_normalized_vec(parts[1], &dt->cam.dir)

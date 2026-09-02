@@ -10,6 +10,7 @@ SRCS = main.c \
 	parser/parse_params.c \
 	utils/objects.c \
 	utils/utils.c \
+	utils/utils_3.c \
 	draw/draw_utils.c \
 	draw/draw.c \
 	close/closed.c

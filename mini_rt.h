@@ -6,7 +6,7 @@
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 14:02:05 by bsiguenc          #+#    #+#             */
-/*   Updated: 2026/09/02 12:25:25 by blas             ###   ########.fr       */
+/*   Updated: 2026/09/02 12:35:55 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,4 +158,10 @@ int		get_b(int trgb);
 
 
 int	close_window(t_data *dt);
+
+// Utils
+int	count_nodes(char *str);
+int	count_splits(char **strs);
+char	**split_realloc(char **strs, char *str, int i, int j);
+char	**splitter(char *str);
 #endif
