@@ -13,7 +13,14 @@ SRCS = main.c \
 	utils/utils_3.c \
 	draw/draw_utils.c \
 	draw/draw.c \
+	draw/camera/camera.c \
+	draw/vectores/vec_utils_1.c \
+	draw/vectores/vec_utils_2.c \
+	draw/hits/hit_cylinder.c \
+	draw/hits/hit_plane.c \
+	draw/hits/hit_sphere.c \
 	close/closed.c
+	
 
 MLX_DIR = minilibx-linux
 MLX_LIB = $(MLX_DIR)/libmlx_Linux.a

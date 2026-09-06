@@ -6,7 +6,7 @@
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 22:58:57 by blas              #+#    #+#             */
-/*   Updated: 2026/09/02 12:20:35 by blas             ###   ########.fr       */
+/*   Updated: 2026/09/06 18:36:48 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,29 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 //Aqui va todo el renderizado
 void	do_paint(t_data *dt)
 {
-	int	i;
 	int	x;
+	int	y;
+	t_ray	ray;
+	t_object	*hit_obj;
+	double	t;
+	int	color;
 
-	i = 0;
-	while (i < 100)
+	y = 0;
+	while (y < HEIGHT)
 	{
 		x = 0;
-		while (x < 100)
+		while (x < WIDTH)
 		{
-			my_mlx_pixel_put(dt, i, x, 0x00FF0000);
+			ray = generate_ray(dt, x, y);
+			hit_obj = find_closest_object(dt, ray, &t);
+			if (hit_obj)
+				color = get_object_color(hit_obj);
+			else
+				color = 0x000000;
+			my_mlx_pixel_put(dt, x, y, color);
 			x++;
 		}
-		i++;
+		y++;
 	}
 }
 

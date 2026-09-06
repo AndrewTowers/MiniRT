@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   mini_rt.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 14:02:05 by bsiguenc          #+#    #+#             */
-/*   Updated: 2026/09/02 12:36:50 by andtruji         ###   ########.fr       */
+/*   Updated: 2026/09/06 18:44:22 by blas             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef MINI_RT_H
 # define MINI_RT_H
@@ -29,6 +29,10 @@
 # ifndef HEIGHT
 #  define HEIGHT 800
 # endif
+
+#ifndef PI
+# define PI 3.14159265358979323846
+#endif
 
 typedef struct s_rgb
 {
@@ -104,6 +108,12 @@ typedef struct s_object
 	struct s_object	*next;
 }	t_object;
 
+typedef struct s_ray
+{
+	t_pos	origin;
+	t_pos	dir;
+}	t_ray;
+
 typedef struct s_dt_mlx
 {
 	void	*img;
@@ -156,6 +166,19 @@ int		create_trgb(int t, int r, int g, int b);
 int		get_r(int trgb);
 int		get_g(int trgb);
 int		get_b(int trgb);
+int		get_object_color(t_object *obj);
+t_pos	v_add(t_pos a, t_pos b);
+t_pos	v_sub(t_pos a, t_pos b);
+t_pos	v_scale(t_pos v, float factor);
+double	v_dot(t_pos	a, t_pos b);
+t_pos	v_cross(t_pos a, t_pos b);
+double	v_len(t_pos v);
+t_pos	v_norm(t_pos v);
+t_ray	generate_ray(t_data *dt, int x, int y);
+t_object	*find_closest_object(t_data *dt, t_ray ray, double *out_t);
+double	hit_cylinder(t_cylinder *cy, t_ray ray);
+double	hit_sphere(t_sphere *sp, t_ray ray);
+double	hit_plane(t_plane *pl, t_ray ray);
 
 
 int	close_window(t_data *dt);
