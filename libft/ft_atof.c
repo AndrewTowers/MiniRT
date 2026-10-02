@@ -6,22 +6,36 @@
 /*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 11:51:15 by andtruji          #+#    #+#             */
-/*   Updated: 2026/09/02 12:08:20 by andtruji         ###   ########.fr       */
+/*   Updated: 2026/09/30 19:12:20 by andtruji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft.h"
 
+static void	dot(const char *nptr, int *i, double *n, double *decimal)
+{
+	if (nptr[*i] == '.')
+	{
+		(*i)++;
+		while (nptr[*i] >= '0' && nptr[*i] <= '9')
+		{
+			*decimal *= 10.0;
+			*n = *n * 10.0 + (nptr[*i] - '0');
+			(*i)++;
+		}
+	}
+}
+
 double	ft_atof(const char *nptr)
 {
-	int	    i;
+	int		i;
 	double	n;
-    double  decimal;
-	int	    s;
+	double	decimal;
+	int		s;
 
 	i = 0;
 	n = 0.0;
-	decimal = 0.1;
+	decimal = 1.0;
 	s = 1;
 	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == ' ')
 		i++;
@@ -34,8 +48,8 @@ double	ft_atof(const char *nptr)
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
 		n = n * 10.0 + (nptr[i] - '0');
-        decimal *= 10.0;
 		i++;
 	}
-	return (n * s) / decimal;
+	dot(nptr, &i, &n, &decimal);
+	return ((n * s) / decimal);
 }

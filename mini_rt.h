@@ -6,7 +6,7 @@
 /*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 14:02:05 by bsiguenc          #+#    #+#             */
-/*   Updated: 2026/09/15 10:47:28 by andtruji         ###   ########.fr       */
+/*   Updated: 2026/10/02 10:30:13 by andtruji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -43,15 +43,15 @@ typedef struct s_rgb
 
 typedef struct s_pos
 {
-	float		x;
-	float		y;
-	float		z;
+	double		x;
+	double		y;
+	double		z;
 }	t_pos;
 
 typedef struct s_aml
 {
 	int		save;
-	float	ratio;
+	double	ratio;
 	t_rgb	rgb;
 }	t_aml;
 
@@ -60,14 +60,14 @@ typedef struct s_cam
 	int		save;
 	t_pos	pos;
 	t_pos	dir;
-	float	fov;
+	double	fov;
 }	t_cam;
 
 typedef struct s_light
 {
 	int		save;
 	t_pos	pos;
-	float	ratio;
+	double	ratio;
 	t_rgb	rgb;
 }	t_light;
 
@@ -81,7 +81,7 @@ typedef enum s_type_figures
 typedef struct s_sphere
 {
 	t_pos	pos;
-	float	diameter;
+	double	diameter;
 	t_rgb	rgb;
 }	t_sphere;
 
@@ -92,12 +92,27 @@ typedef struct s_plane
 	t_rgb	rgb;
 }	t_plane;
 
+typedef struct s_cy_info
+{
+	t_pos	oc;
+	t_pos	axis;
+	t_pos	oc_perp;
+	t_pos	dir_perp;
+	double	radius;
+	double	a;
+	double	b;
+	double	c;
+	double	discriminant;
+	double	t1;
+	double	t2;
+}	t_cy_info;
+
 typedef struct s_cylinder
 {
 	t_pos	pos;
 	t_pos	axis;
-	float	diameter;
-	float	height;
+	double	diameter;
+	double	height;
 	t_rgb	rgb;
 }	t_cylinder;
 
@@ -152,7 +167,7 @@ int		parse_plane(char *args, t_data *dt);
 int		parse_cylinder(char *args, t_data *dt);
 int		parse_vec(char *str, t_pos *vec);
 int		parse_rgb(char *rgb_str, t_rgb *rgb);
-int		parse_diameter_n_height(char *dm_hg, float *dmt_hg);
+int		parse_diameter_n_height(char *dm_hg, double *dmt_hg);
 int		parse_normalized_vec(char *str, t_pos *vec);
 
 t_object	*new_object(t_figures type, void *figure);
@@ -169,7 +184,7 @@ int		get_b(int trgb);
 int		get_object_color(t_object *obj);
 t_pos	v_add(t_pos a, t_pos b);
 t_pos	v_sub(t_pos a, t_pos b);
-t_pos	v_scale(t_pos v, float factor);
+t_pos	v_scale(t_pos v, double factor);
 double	v_dot(t_pos	a, t_pos b);
 t_pos	v_cross(t_pos a, t_pos b);
 double	v_len(t_pos v);
@@ -180,12 +195,16 @@ double	hit_cylinder(t_cylinder *cy, t_ray ray);
 double	hit_sphere(t_sphere *sp, t_ray ray);
 double	hit_plane(t_plane *pl, t_ray ray);
 
-
 int	close_window(t_data *dt);
 
 // Utils
-int	count_nodes(char *str);
-int	count_splits(char **strs);
+int		count_nodes(char *str);
+int		count_splits(char **strs);
 char	**split_realloc(char **strs, char *str, int i, int j);
 char	**splitter(char *str);
+
+// Lights
+t_pos	get_normal(t_object *obj, t_pos hit_point);
+int		compute_color(t_data *data, t_object *obj, t_pos hit_point);
+
 #endif
