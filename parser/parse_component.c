@@ -6,13 +6,13 @@
 /*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 11:47:01 by andtruji          #+#    #+#             */
-/*   Updated: 2026/09/01 19:09:26 by andtruji         ###   ########.fr       */
+/*   Updated: 2026/09/23 19:43:28 by andtruji         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "../mini_rt.h"
 
-int parse_diameter_n_height(char *dm_hg, float *dmt_hg)
+int parse_diameter_n_height(char *dm_hg, double *dmt_hg)
 {
 	if (!dm_hg)
 		return (0);
@@ -57,8 +57,8 @@ int	parse_vec(char *str, t_pos *vec)
 
 int	is_normalized(t_pos vec)
 {
-	float	magnitude;
-	float	epsilon;
+	double	magnitude;
+	double	epsilon;
 
 	epsilon = 0.0001;
 	magnitude = sqrtf(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);

@@ -19,6 +19,7 @@ SRCS = main.c \
 	draw/hits/hit_cylinder.c \
 	draw/hits/hit_plane.c \
 	draw/hits/hit_sphere.c \
+	draw/lights/lights.c \
 	close/closed.c
 	
 
