@@ -6,7 +6,7 @@
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 14:50:57 by bsiguenc          #+#    #+#             */
-/*   Updated: 2026/09/02 12:37:40 by blas             ###   ########.fr       */
+/*   Updated: 2026/10/14 14:41:41 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,7 @@ int	parse_line(char *line, t_data *dt, int size)
 		return (parse_plane(line + size, dt));
 	else if (!ft_strncmp(line, "cy ", size))
 		return (parse_cylinder(line + size, dt));
+	else if (!ft_strncmp(line, "\n", 1))
+                return (1);
 	return (0);
 }
