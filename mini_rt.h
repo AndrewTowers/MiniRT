@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   mini_rt.h                                          :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 14:02:05 by bsiguenc          #+#    #+#             */
-/*   Updated: 2026/10/02 10:30:13 by andtruji         ###   ########.fr       */
+/*   Updated: 2026/11/10 03:56:07 by andtruji         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef MINI_RT_H
 # define MINI_RT_H
@@ -65,10 +65,10 @@ typedef struct s_cam
 
 typedef struct s_light
 {
-	int		save;
-	t_pos	pos;
-	double	ratio;
-	t_rgb	rgb;
+	t_pos			pos;
+	double			ratio;
+	t_rgb			rgb;
+	struct s_light	*next;
 }	t_light;
 
 typedef enum s_type_figures
@@ -107,6 +107,20 @@ typedef struct s_cy_info
 	double	t2;
 }	t_cy_info;
 
+typedef struct s_object
+{
+	t_figures		type;
+	void			*figure;
+	struct s_object	*next;
+}	t_object;
+
+typedef struct s_hit
+{
+	t_object	*obj;
+	t_pos		point;
+	t_pos		normal;
+}	t_hit;
+
 typedef struct s_cylinder
 {
 	t_pos	pos;
@@ -115,13 +129,6 @@ typedef struct s_cylinder
 	double	height;
 	t_rgb	rgb;
 }	t_cylinder;
-
-typedef struct s_object
-{
-	t_figures		type;
-	void			*figure;
-	struct s_object	*next;
-}	t_object;
 
 typedef struct s_ray
 {
@@ -146,7 +153,7 @@ typedef struct s_data
 	int			fd_rt;
 	t_aml		aml;
 	t_cam		cam;
-	t_light		light;
+	t_light		*light;
 	t_object	*objects;
 }	t_data;
 
@@ -202,6 +209,7 @@ int		count_nodes(char *str);
 int		count_splits(char **strs);
 char	**split_realloc(char **strs, char *str, int i, int j);
 char	**splitter(char *str);
+void    free_lights(t_light *head);
 
 // Lights
 t_pos	get_normal(t_object *obj, t_pos hit_point);

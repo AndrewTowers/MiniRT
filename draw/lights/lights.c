@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   lights.c                                           :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/30 19:41:31 by andtruji          #+#    #+#             */
-/*   Updated: 2026/10/02 11:56:44 by andtruji         ###   ########.fr       */
+/*   Updated: 2026/11/10 03:57:09 by andtruji         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../../mini_rt.h"
 
@@ -50,44 +50,53 @@ int	is_in_shadow(t_data *data, t_pos point, t_pos light_dir, t_pos normal, doubl
 	return (0);
 }
 
-int	scale_color(int color, double factor)
+static void apply_light(t_data *data, t_light *light, t_hit *hit, double *acc)
 {
-	int	r;
-	int	g;
-	int	b;
+	t_pos	dir;
+	double	dist_light;
+	double	d;
 
-	r = get_r(color);
-	g = get_g(color);
-	b = get_b(color);
-	r = (int)(r * factor);
-	g = (int)(g * factor);
-	b = (int)(b * factor);
-	if (r > 255)
-		r = 255;
-	if (g > 255)
-		g = 255;
-	if (b > 255)
-		b = 255;
-	return (create_trgb(0, r, g, b));
+	dir = v_norm(v_sub(light->pos, hit->point));
+	dist_light = v_len(v_sub(light->pos, hit->point));
+	if (is_in_shadow(data, hit->point, dir, hit->normal, dist_light))
+		return ;
+	d = fmax(0.0, v_dot(hit->normal, dir)) * light->ratio;
+	acc[0] += d * light->rgb.r / 255.0;
+	acc[1] += d * light->rgb.g / 255.0;
+	acc[2] += d * light->rgb.b / 255.0;
+}
+
+static int channel(int base, double factor)
+{
+	int valeur;
+
+	valeur = (int)(base * factor);
+	if (valeur > 255)
+		valeur = 255;
+	return (valeur);
 }
 
 int	compute_color(t_data *data, t_object *obj, t_pos hit_point)
 {
-	t_pos	normal;
-	t_pos	light_dir;
-	double	dist_light;
-	double	diffuse;
+	t_hit	hit;
+	t_light	*light;
+	double	acc[3];
 	int		base_color;
 
-	normal = get_normal(obj, hit_point);
-	light_dir = v_norm(v_sub(data->light.pos, hit_point));
-	dist_light = v_len(v_sub((data->light).pos, hit_point));
+	hit.obj = obj;
+	hit.point = hit_point;
+	hit.normal = get_normal(obj, hit_point);
 	base_color = get_object_color(obj);
-	diffuse = 0.0;
-	if (!is_in_shadow(data, hit_point, light_dir, normal, dist_light))
-		diffuse = fmax(0.0, v_dot(normal, light_dir));
-	diffuse += data->aml.ratio;
-	if (diffuse > 1.0)
-		diffuse = 1.0;
-	return (scale_color(base_color, diffuse));
+	acc[0] = data->aml.ratio * data->aml.rgb.r / 255.0;
+	acc[1] = data->aml.ratio * data->aml.rgb.g / 255.0;
+	acc[2] = data->aml.ratio * data->aml.rgb.b / 255.0;
+	light = data->light;
+	while (light)
+	{
+		apply_light(data, light, &hit, acc);
+		light = light->next;
+	}
+	return (create_trgb(0, channel(base_color >> 16 & 0xFF, acc[0]),
+			channel(base_color >> 8 & 0xFF, acc[1]),
+			channel(base_color & 0xFF, acc[2])));
 }

@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
@@ -6,14 +6,15 @@
 /*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/05 15:59:00 by blas              #+#    #+#             */
-/*   Updated: 2026/09/02 12:38:49 by andtruji         ###   ########.fr       */
+/*   Updated: 2026/11/10 03:23:33 by andtruji         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "mini_rt.h"
 
 void	end_data(t_data *dt, int err, char *sterr)
 {
+	free_lights(dt->light);
 	free_objects(dt->objects);
 	if (dt->mlx && dt->mlx_win)
 	{
@@ -35,8 +36,8 @@ int	init_data(t_data *dt, char **args)
 		return (ret_str("Error: Invalid File\n", 1));
 	dt->aml.save = 0;
 	dt->cam.save = 0;
-	dt->light.save = 0;
 	dt->objects = NULL;
+	dt->light = NULL;
 	parse_file(dt);
 	return (0);
 }
