@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_camera.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/10 10:27:42 by blas              #+#    #+#             */
-/*   Updated: 2026/11/10 10:28:51 by blas             ###   ########.fr       */
+/*   Updated: 2026/11/10 14:38:33 by bsiguenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ int	parse_camera(char *args, t_data *dt)
 
 	parts = splitter(args);
 	if (!parts || !parts[0] || !parts[1] || !parts[2] || parts[3])
+		return (0);
+	if (dt->ready.c_ready == 0)
+		dt->ready.c_ready = 1;
+	else
 		return (0);
 	if (!parse_vec(parts[0], &dt->cam.pos)
 		|| !parse_normalized_vec(parts[1], &dt->cam.dir)

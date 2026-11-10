@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/05 15:59:00 by blas              #+#    #+#             */
-/*   Updated: 2026/11/10 11:41:59 by blas             ###   ########.fr       */
+/*   Updated: 2026/11/10 14:36:58 by bsiguenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ int	init_data(t_data *dt, char **args)
 	dt->light = NULL;
 	dt->mlx = NULL;
 	dt->mlx_win = NULL;
+	dt->ready.a_ready = 0;
+	dt->ready.c_ready = 0;
+	dt->ready.l_ready = 0;
 	parse_file(dt);
 	return (0);
 }

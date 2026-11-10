@@ -145,6 +145,13 @@ typedef struct s_dt_mlx
 	int		endian;
 }	t_dt_mlx;
 
+typedef struct s_ready
+{
+	int	a_ready;
+	int	c_ready;
+	int	l_ready;
+}	t_ready;
+
 typedef struct s_data
 {
 	void		*mlx;
@@ -155,6 +162,7 @@ typedef struct s_data
 	t_cam		cam;
 	t_light		*light;
 	t_object	*objects;
+	t_ready		ready;
 }	t_data;
 
 int			check_args(char **args, char *extension, int count);

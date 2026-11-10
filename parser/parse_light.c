@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_light.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 11:48:53 by andtruji          #+#    #+#             */
-/*   Updated: 2026/11/10 10:27:28 by blas             ###   ########.fr       */
+/*   Updated: 2026/11/10 14:40:42 by bsiguenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ int	parse_ambient(char *args, t_data *dt)
 	parts = splitter(args);
 	if (!parts || !parts[0] || !parts[1] || parts[2])
 		return (0);
+	if (dt->ready.a_ready == 0)
+		dt->ready.a_ready = 1;
+	else
+		return (0);
 	if (!parse_ratio(parts[0], &dt->aml.ratio)
 		|| !parse_rgb(parts[1], &dt->aml.rgb))
 	{
@@ -44,6 +48,10 @@ int	parse_light(char *args, t_data *dt)
 
 	parts = splitter(args);
 	if (!parts || !parts[0] || !parts[1] || !parts[2] || parts[3])
+		return (0);
+	if (dt->ready.l_ready == 0)
+		dt->ready.l_ready = 1;
+	else
 		return (0);
 	new_light = malloc(sizeof(t_light));
 	if (!new_light)
