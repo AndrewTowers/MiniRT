@@ -74,5 +74,6 @@ void	run_mlx(t_data *dt)
 	do_paint(dt);
 	mlx_put_image_to_window(dt->mlx, dt->mlx_win, dt->img.img, 0, 0);
 	mlx_hook(dt->mlx_win, 17, 0, close_window, dt);
+	mlx_key_hook(dt->mlx_win, key_hook, dt);
 	mlx_loop(dt->mlx);
 }

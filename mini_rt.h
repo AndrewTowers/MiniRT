@@ -163,6 +163,7 @@ char		*ft_findchar(char *str, char c);
 char		*ft_reverse_findchar(char *str, char c);
 int			parse_file(t_data *dt);
 void		end_data(t_data *dt, int err, char *sterr);
+int			key_hook(int keycode, void *param);
 
 //parsing elements
 int			parse_line(char *line, t_data *dt, int size);

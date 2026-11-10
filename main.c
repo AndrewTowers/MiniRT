@@ -6,7 +6,7 @@
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/05 15:59:00 by blas              #+#    #+#             */
-/*   Updated: 2026/11/10 10:04:55 by blas             ###   ########.fr       */
+/*   Updated: 2026/11/10 11:41:59 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void	end_data(t_data *dt, int err, char *sterr)
 {
-	free_lights(dt->light);
-	free_objects(dt->objects);
+	if (dt->light)
+		free_lights(dt->light);
+	if (dt->objects)
+		free_objects(dt->objects);
 	if (dt->mlx && dt->mlx_win)
 	{
 		mlx_destroy_window(dt->mlx, dt->mlx_win);
@@ -38,13 +40,18 @@ int	init_data(t_data *dt, char **args)
 	dt->cam.save = 0;
 	dt->objects = NULL;
 	dt->light = NULL;
+	dt->mlx = NULL;
+	dt->mlx_win = NULL;
 	parse_file(dt);
 	return (0);
 }
 
-int	key_hook(int keycode, t_data *dt)
+int	key_hook(int keycode, void *param)
 {
-	if (keycode == 65307)
+	t_data	*dt;
+
+	dt = (t_data *)param;
+	if (keycode == 65307 || keycode == 53)
 		close_window(dt);
 	return (0);
 }
