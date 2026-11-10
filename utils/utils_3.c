@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 13:54:07 by blas              #+#    #+#             */
-/*   Updated: 2026/11/10 10:24:53 by blas             ###   ########.fr       */
+/*   Updated: 2026/11/10 18:37:52 by bsiguenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	count_splits(char **strs)
 	int	i;
 
 	i = 0;
+	if (!strs)
+		return (-1);
 	while (strs[i])
 		i++;
 	return (i);

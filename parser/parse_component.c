@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_component.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 11:47:01 by andtruji          #+#    #+#             */
-/*   Updated: 2026/11/10 10:29:59 by blas             ###   ########.fr       */
+/*   Updated: 2026/11/10 18:36:34 by bsiguenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ int	parse_rgb(char *rgb_str, t_rgb *rgb)
 
 	split = ft_split(rgb_str, ',');
 	if (!split || !split[0] || !split[1] || !split[2] || split[3])
+	{
+		ft_free_split(split);
 		return (0);
+	}
 	rgb->r = ft_atoi(split[0]);
 	rgb->g = ft_atoi(split[1]);
 	rgb->b = ft_atoi(split[2]);
@@ -48,7 +51,10 @@ int	parse_vec(char *str, t_pos *vec)
 
 	split = ft_split(str, ',');
 	if (!split || !split[0] || !split[1] || !split[2] || split[3])
+	{
+		ft_free_split(split);
 		return (0);
+	}
 	vec->x = ft_atof(split[0]);
 	vec->y = ft_atof(split[1]);
 	vec->z = ft_atof(split[2]);
@@ -61,12 +67,13 @@ int	is_normalized(t_pos vec)
 	double	magnitude;
 	double	epsilon;
 
-	epsilon = 0.0001;
+	epsilon = 0.002;
 	magnitude = sqrtf(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
 	if (magnitude < 1.0 - epsilon || magnitude > 1.0 + epsilon)
 		return (0);
 	return (1);
 }
+
 
 int	parse_normalized_vec(char *str, t_pos *vec)
 {

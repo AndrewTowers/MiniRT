@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 14:50:57 by bsiguenc          #+#    #+#             */
-/*   Updated: 2026/11/10 10:26:26 by blas             ###   ########.fr       */
+/*   Updated: 2026/11/10 18:38:36 by bsiguenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ int	parse_sphere(char *args, t_data *dt)
 
 	parts = splitter(args);
 	if (!parts || !parts[0] || !parts[1] || !parts[2] || parts[3])
-		return (0);
+		return (ret_str("Error\nParse SPHERE", 0));
 	sp = malloc(sizeof(t_sphere));
 	if (!sp)
-		return (0);
+		return (ret_str("Error\n malloc SPHERE", 0));
 	if (!parse_vec(parts[0], &sp->pos) || !parse_rgb(parts[2], &sp->rgb)
 		|| !parse_diameter_n_height(parts[1], &sp->diameter))
 	{
 		free(sp);
 		ft_free_split(parts);
-		return (0);
+		return (ret_str("Error\nNumber params SPHERE", 0));
 	}
 	obj = new_object(SPHERE, sp);
 	add_object(&dt->objects, obj);
@@ -45,17 +45,17 @@ int	parse_plane(char *args, t_data *dt)
 
 	parts = splitter(args);
 	if (!parts || !parts[0] || !parts[1] || !parts[2] || parts[3])
-		return (0);
+		return (ret_str("Error\nParse PLANE", 0));
 	pl = malloc(sizeof(t_plane));
 	if (!pl)
-		return (0);
+		return (ret_str("Error\n malloc PLANE", 0));
 	if (!parse_vec(parts[0], &pl->pos)
 		|| !parse_normalized_vec(parts[1], &pl->normal)
 		|| !parse_rgb(parts[2], &pl->rgb))
 	{
 		free(pl);
 		ft_free_split(parts);
-		return (0);
+		return (ret_str("Error\nNumber params PLANE", 0));
 	}
 	obj = new_object(PLANE, pl);
 	add_object(&dt->objects, obj);
@@ -72,10 +72,10 @@ int	parse_cylinder(char *args, t_data *dt)
 	parts = splitter(args);
 	if (!parts || !parts[0] || !parts[1] || !parts[2]
 		|| !parts[3] || !parts[4] || parts[5])
-		return (0);
+		return (ret_str("Error\nParse CYLINDER", 0));
 	cy = malloc(sizeof(t_cylinder));
 	if (!cy)
-		return (0);
+		return (ret_str("Error\n malloc CYLINDER", 0));
 	if (!parse_vec(parts[0], &cy->pos)
 		|| !parse_normalized_vec(parts[1], &cy->axis)
 		|| !parse_diameter_n_height(parts[2], &cy->diameter)
@@ -84,7 +84,7 @@ int	parse_cylinder(char *args, t_data *dt)
 	{
 		free(cy);
 		ft_free_split(parts);
-		return (0);
+		return (ret_str("Error\nNumber params CYLINDER", 0));
 	}
 	obj = new_object(CYLINDER, cy);
 	add_object(&dt->objects, obj);
@@ -92,8 +92,32 @@ int	parse_cylinder(char *args, t_data *dt)
 	return (1);
 }
 
+
+int	check_line(char *line)
+{
+	int i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (!ft_isdigit(line[i]) && line[i] != '+' && line[i] != '-'
+			&& line[i] != '.' && line[i] != ','
+			&& line[i] != ' ' && line[i] != '\t' && line[i] != '\r')
+			return (0);
+		if (line[i + 1] && line[i] == ','
+			&& (!ft_isdigit(line[i + 1]) && line[i + 1] != '-'))
+			return (0);
+		if (line[i + 1] && line[i] == '-' && !ft_isdigit(line[i + 1]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int	parse_line(char *line, t_data *dt, int size)
 {
+	if (check_line(line + size) == 0)
+		return (ret_str("Error \n invalid char infile", 0));
 	if (!ft_strncmp(line, "A ", size))
 		return (parse_ambient(line + size, dt));
 	else if (!ft_strncmp(line, "C ", size))

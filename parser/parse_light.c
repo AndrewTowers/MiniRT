@@ -6,7 +6,7 @@
 /*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 11:48:53 by andtruji          #+#    #+#             */
-/*   Updated: 2026/11/10 14:40:42 by bsiguenc         ###   ########.fr       */
+/*   Updated: 2026/11/10 18:35:25 by bsiguenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,16 @@ int	parse_ambient(char *args, t_data *dt)
 
 	parts = splitter(args);
 	if (!parts || !parts[0] || !parts[1] || parts[2])
-		return (0);
+		return (ret_str("Error\nParse AMBIENT", 0));
 	if (dt->ready.a_ready == 0)
 		dt->ready.a_ready = 1;
 	else
-		return (0);
+		return (ret_str("Error\nMultiple A", 0));
 	if (!parse_ratio(parts[0], &dt->aml.ratio)
 		|| !parse_rgb(parts[1], &dt->aml.rgb))
 	{
 		ft_free_split(parts);
-		return (0);
+		return (ret_str("Error\nNumber params AMBIENT", 0));
 	}
 	ft_free_split(parts);
 	return (1);
@@ -48,11 +48,14 @@ int	parse_light(char *args, t_data *dt)
 
 	parts = splitter(args);
 	if (!parts || !parts[0] || !parts[1] || !parts[2] || parts[3])
-		return (0);
+	{
+		ft_free_split(parts);
+		return (ret_str("Error\nParse LIGHT", 0));
+	}
 	if (dt->ready.l_ready == 0)
 		dt->ready.l_ready = 1;
 	else
-		return (0);
+		return (ret_str("Error\nMultiple L", 0));
 	new_light = malloc(sizeof(t_light));
 	if (!new_light)
 		return (ft_free_split(parts), 0);
@@ -62,7 +65,7 @@ int	parse_light(char *args, t_data *dt)
 	{
 		free(new_light);
 		ft_free_split(parts);
-		return (0);
+		return (ret_str("Error\nNumber params LIGHT", 0));
 	}
 	new_light->next = dt->light;
 	dt->light = new_light;

@@ -219,6 +219,7 @@ int			count_splits(char **strs);
 char		**split_realloc(char **strs, char *str, int i, int j);
 char		**splitter(char *str);
 void		free_lights(t_light *head);
+char		**ft_split_rt(char const *s, char c);
 // Lights
 t_pos		get_normal(t_object *obj, t_pos hit_point);
 int			compute_color(t_data *data, t_object *obj, t_pos hit_point);
