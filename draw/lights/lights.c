@@ -6,7 +6,7 @@
 /*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/30 19:41:31 by andtruji          #+#    #+#             */
-/*   Updated: 2026/11/10 03:57:09 by andtruji         ###   ########.fr       */
+/*   Updated: 2026/11/10 10:49:00 by andtruji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,37 +20,35 @@ t_pos	get_normal(t_object *obj, t_pos hit_point)
 	t_pos		axis;
 
 	if (obj->type == SPHERE)
-		normal = v_norm(v_sub(hit_point, ((t_sphere *)obj->figure)->pos));
-	else if (obj->type == PLANE)
-		normal = v_norm(((t_plane *)obj->figure)->normal);
-	else
+		return (v_norm(v_sub(hit_point, ((t_sphere *)obj->figure)->pos)));
+	if (obj->type == PLANE)
+		return (v_norm(((t_plane *)obj->figure)->normal));
+	cy = (t_cylinder *)obj->figure;
+	axis = v_norm(cy->axis);
+	height = v_dot(v_sub(hit_point, cy->pos), axis);
+	if (fabs(height) > cy->height / 2.0)
 	{
-		cy = (t_cylinder *)obj->figure;
-		axis = v_norm((cy->axis));
-		height = v_dot(v_sub(hit_point, (cy->pos)),
-				v_norm((cy->axis)));
-		if (fabs(height) > cy->height / 2.0)
-			normal = v_norm(v_scale(axis, height > 0.0 ? 1.0 : -1.0));
-		else
-			normal = v_norm(v_sub(v_sub(hit_point, (cy->pos)),
-					v_scale(v_norm((cy->axis)), height)));
+		if (height > 0.0)
+			return (axis);
+		return (v_scale(axis, -1.0));
 	}
-	return (normal);
+	normal = v_sub(v_sub(hit_point, cy->pos), v_scale(axis, height));
+	return (v_norm(normal));
 }
 
-int	is_in_shadow(t_data *data, t_pos point, t_pos light_dir, t_pos normal, double dist_light)
+static int	is_in_shadow(t_data *data, t_hit *hit, t_pos dir, double dist_light)
 {
 	t_ray	shadow_ray;
 	double	t;
 
-	shadow_ray.origin = v_add(point, v_scale(normal, 1e-4));
-	shadow_ray.dir = light_dir;
+	shadow_ray.origin = v_add(hit->point, v_scale(hit->normal, 1e-4));
+	shadow_ray.dir = dir;
 	if (find_closest_object(data, shadow_ray, &t) && t < dist_light)
 		return (1);
 	return (0);
 }
 
-static void apply_light(t_data *data, t_light *light, t_hit *hit, double *acc)
+static void	apply_light(t_data *data, t_light *light, t_hit *hit, double *acc)
 {
 	t_pos	dir;
 	double	dist_light;
@@ -58,7 +56,7 @@ static void apply_light(t_data *data, t_light *light, t_hit *hit, double *acc)
 
 	dir = v_norm(v_sub(light->pos, hit->point));
 	dist_light = v_len(v_sub(light->pos, hit->point));
-	if (is_in_shadow(data, hit->point, dir, hit->normal, dist_light))
+	if (is_in_shadow(data, hit, dir, dist_light))
 		return ;
 	d = fmax(0.0, v_dot(hit->normal, dir)) * light->ratio;
 	acc[0] += d * light->rgb.r / 255.0;
@@ -66,9 +64,9 @@ static void apply_light(t_data *data, t_light *light, t_hit *hit, double *acc)
 	acc[2] += d * light->rgb.b / 255.0;
 }
 
-static int channel(int base, double factor)
+static int	channel(int base, double factor)
 {
-	int valeur;
+	int	valeur;
 
 	valeur = (int)(base * factor);
 	if (valeur > 255)

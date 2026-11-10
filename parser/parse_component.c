@@ -1,18 +1,18 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parse_component.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 11:47:01 by andtruji          #+#    #+#             */
-/*   Updated: 2026/09/23 19:43:28 by andtruji         ###   ########.fr       */
+/*   Updated: 2026/11/10 10:29:59 by blas             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../mini_rt.h"
 
-int parse_diameter_n_height(char *dm_hg, double *dmt_hg)
+int	parse_diameter_n_height(char *dm_hg, double *dmt_hg)
 {
 	if (!dm_hg)
 		return (0);
@@ -22,7 +22,7 @@ int parse_diameter_n_height(char *dm_hg, double *dmt_hg)
 	return (1);
 }
 
-int parse_rgb(char *rgb_str, t_rgb *rgb)
+int	parse_rgb(char *rgb_str, t_rgb *rgb)
 {
 	char	**split;
 
@@ -32,7 +32,8 @@ int parse_rgb(char *rgb_str, t_rgb *rgb)
 	rgb->r = ft_atoi(split[0]);
 	rgb->g = ft_atoi(split[1]);
 	rgb->b = ft_atoi(split[2]);
-	if (rgb->r < 0 || rgb->r > 255 || rgb->g < 0 || rgb->g > 255 || rgb->b < 0 || rgb->b > 255)
+	if (rgb->r < 0 || rgb->r > 255 || rgb->g < 0
+		|| rgb->g > 255 || rgb->b < 0 || rgb->b > 255)
 	{
 		ft_free_split(split);
 		return (0);

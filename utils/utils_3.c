@@ -6,7 +6,7 @@
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 13:54:07 by blas              #+#    #+#             */
-/*   Updated: 2026/09/02 12:35:19 by blas             ###   ########.fr       */
+/*   Updated: 2026/11/10 10:24:53 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ char	**split_realloc(char **strs, char *str, int i, int j)
 
 char	**splitter(char *str)
 {
-	int	i;
-	int	j;
-	char **strs;
+	int		i;
+	int		j;
+	char	**strs;
 
 	i = 0;
 	strs = NULL;
@@ -93,9 +93,4 @@ char	**splitter(char *str)
 		}
 	}
 	return (strs);
-
 }
-
-
-
-

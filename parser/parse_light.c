@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_light.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 11:48:53 by andtruji          #+#    #+#             */
-/*   Updated: 2026/11/10 03:36:53 by andtruji         ###   ########.fr       */
+/*   Updated: 2026/11/10 10:27:28 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,15 @@ int	parse_ratio(char *ratio_str, double *ratio)
 	return (1);
 }
 
-int parse_ambient(char *args, t_data *dt)
+int	parse_ambient(char *args, t_data *dt)
 {
 	char	**parts;
 
 	parts = splitter(args);
 	if (!parts || !parts[0] || !parts[1] || parts[2])
 		return (0);
-	if (!parse_ratio(parts[0], &dt->aml.ratio) || !parse_rgb(parts[1], &dt->aml.rgb))
+	if (!parse_ratio(parts[0], &dt->aml.ratio)
+		|| !parse_rgb(parts[1], &dt->aml.rgb))
 	{
 		ft_free_split(parts);
 		return (0);
@@ -38,7 +39,7 @@ int parse_ambient(char *args, t_data *dt)
 
 int	parse_light(char *args, t_data *dt)
 {
-	char **parts;
+	char	**parts;
 	t_light	*new_light;
 
 	parts = splitter(args);
@@ -47,8 +48,9 @@ int	parse_light(char *args, t_data *dt)
 	new_light = malloc(sizeof(t_light));
 	if (!new_light)
 		return (ft_free_split(parts), 0);
-	if (!parse_vec(parts[0], &new_light->pos) || !parse_ratio(parts[1], &new_light->ratio)
-	|| !parse_rgb(parts[2], &new_light->rgb))
+	if (!parse_vec(parts[0], &new_light->pos)
+		|| !parse_ratio(parts[1], &new_light->ratio)
+		|| !parse_rgb(parts[2], &new_light->rgb))
 	{
 		free(new_light);
 		ft_free_split(parts);
@@ -57,5 +59,5 @@ int	parse_light(char *args, t_data *dt)
 	new_light->next = dt->light;
 	dt->light = new_light;
 	ft_free_split(parts);
-	return (1);	
+	return (1);
 }

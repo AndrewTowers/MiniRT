@@ -6,7 +6,7 @@
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 14:50:57 by bsiguenc          #+#    #+#             */
-/*   Updated: 2026/10/14 14:41:41 by blas             ###   ########.fr       */
+/*   Updated: 2026/11/10 10:26:26 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	parse_sphere(char *args, t_data *dt)
 	if (!sp)
 		return (0);
 	if (!parse_vec(parts[0], &sp->pos) || !parse_rgb(parts[2], &sp->rgb)
-		|| !parse_diameter_n_height(parts[1], &sp->diameter) )
+		|| !parse_diameter_n_height(parts[1], &sp->diameter))
 	{
 		free(sp);
 		ft_free_split(parts);
@@ -49,7 +49,8 @@ int	parse_plane(char *args, t_data *dt)
 	pl = malloc(sizeof(t_plane));
 	if (!pl)
 		return (0);
-	if (!parse_vec(parts[0], &pl->pos) || !parse_normalized_vec(parts[1], &pl->normal)
+	if (!parse_vec(parts[0], &pl->pos)
+		|| !parse_normalized_vec(parts[1], &pl->normal)
 		|| !parse_rgb(parts[2], &pl->rgb))
 	{
 		free(pl);
@@ -69,12 +70,14 @@ int	parse_cylinder(char *args, t_data *dt)
 	t_object	*obj;
 
 	parts = splitter(args);
-	if (!parts || !parts[0] || !parts[1] || !parts[2] || !parts[3] || !parts[4] || parts[5])
+	if (!parts || !parts[0] || !parts[1] || !parts[2]
+		|| !parts[3] || !parts[4] || parts[5])
 		return (0);
 	cy = malloc(sizeof(t_cylinder));
 	if (!cy)
 		return (0);
-	if (!parse_vec(parts[0], &cy->pos) || !parse_normalized_vec(parts[1], &cy->axis)
+	if (!parse_vec(parts[0], &cy->pos)
+		|| !parse_normalized_vec(parts[1], &cy->axis)
 		|| !parse_diameter_n_height(parts[2], &cy->diameter)
 		|| !parse_diameter_n_height(parts[3], &cy->height)
 		|| !parse_rgb(parts[4], &cy->rgb))
@@ -104,6 +107,6 @@ int	parse_line(char *line, t_data *dt, int size)
 	else if (!ft_strncmp(line, "cy ", size))
 		return (parse_cylinder(line + size, dt));
 	else if (!ft_strncmp(line, "\n", 1))
-                return (1);
+		return (1);
 	return (0);
 }

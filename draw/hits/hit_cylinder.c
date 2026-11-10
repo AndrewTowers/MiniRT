@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   hit_cylinder.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/06 18:42:02 by blas              #+#    #+#             */
-/*   Updated: 2026/09/30 18:53:29 by andtruji         ###   ########.fr       */
+/*   Created: 2026/11/10 10:36:46 by blas              #+#    #+#             */
+/*   Updated: 2026/11/10 10:36:46 by blas             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../../mini_rt.h"
 
@@ -45,11 +45,14 @@ double	hit_body(t_cylinder *cy, t_ray ray)
 	cy_info.oc = v_sub(ray.origin, cy->pos);
 	cy_info.axis = v_norm(cy->axis);
 	cy_info.radius = cy->diameter / 2.0;
-	cy_info.oc_perp = v_sub(cy_info.oc, v_scale(cy_info.axis, v_dot(cy_info.oc, cy_info.axis)));
-	cy_info.dir_perp = v_sub(ray.dir, v_scale(cy_info.axis, v_dot(ray.dir, cy_info.axis)));
+	cy_info.oc_perp = v_sub(cy_info.oc,
+			v_scale(cy_info.axis, v_dot(cy_info.oc, cy_info.axis)));
+	cy_info.dir_perp = v_sub(ray.dir,
+			v_scale(cy_info.axis, v_dot(ray.dir, cy_info.axis)));
 	cy_info.a = v_dot(cy_info.dir_perp, cy_info.dir_perp);
 	cy_info.b = 2.0 * v_dot(cy_info.oc_perp, cy_info.dir_perp);
-	cy_info.c = v_dot(cy_info.oc_perp, cy_info.oc_perp) - (cy_info.radius * cy_info.radius);
+	cy_info.c = v_dot(cy_info.oc_perp,
+			cy_info.oc_perp) - (cy_info.radius * cy_info.radius);
 	cy_info.discriminant = cy_info.b * cy_info.b - 4.0 * cy_info.a * cy_info.c;
 	if (cy_info.discriminant < 0.0)
 		return (-1.0);

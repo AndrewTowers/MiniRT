@@ -12,32 +12,48 @@
 
 #include "../../mini_rt.h"
 
-t_ray	generate_ray(t_data *dt, int x, int y)
+static t_pos	compute_ray_dir(t_data *dt, int x, int y, t_pos w)
 {
-	t_ray ray;
-	t_pos	up;
-	t_pos	w;
 	t_pos	u;
 	t_pos	v;
-	double aspect;
-	double scale;
-	double px;
-	double py;
+	t_pos	up;
+	double	px;
+	double	py;
 
-	w = v_norm(dt->cam.dir);
 	if (fabs(w.y) > 0.999f)
 		up = (t_pos){0, 0, 1};
 	else
 		up = (t_pos){0, 1, 0};
 	u = v_norm(v_cross(up, w));
 	v = v_cross(w, u);
-	aspect = (double)WIDTH / (double)HEIGHT;
-	scale = tan((dt->cam.fov * PI / 180.0) / 2.0);
-	px = (2.0 * ((x + 0.5) / WIDTH) - 1.0) * aspect * scale;
-	py = (1.0 - 2.0 * ((y + 0.5) / HEIGHT)) * scale;
+	px = (2.0 * ((x + 0.5) / WIDTH) - 1.0)
+		* ((double)WIDTH / (double)HEIGHT)
+		* tan((dt->cam.fov * PI / 180.0) / 2.0);
+	py = (1.0 - 2.0 * ((y + 0.5) / HEIGHT))
+		* tan((dt->cam.fov * PI / 180.0) / 2.0);
+	return (v_norm(v_add(v_add(w, v_scale(u, px)), v_scale(v, py))));
+}
+
+t_ray	generate_ray(t_data *dt, int x, int y)
+{
+	t_ray	ray;
+	t_pos	w;
+
+	w = v_norm(dt->cam.dir);
 	ray.origin = dt->cam.pos;
-	ray.dir = v_norm(v_add(v_add(w, v_scale(u, px)), v_scale(v, py)));
+	ray.dir = compute_ray_dir(dt, x, y, w);
 	return (ray);
+}
+
+static double	get_object_intersection(t_object *obj, t_ray ray)
+{
+	if (obj->type == SPHERE)
+		return (hit_sphere((t_sphere *)obj->figure, ray));
+	else if (obj->type == PLANE)
+		return (hit_plane((t_plane *)obj->figure, ray));
+	else if (obj->type == CYLINDER)
+		return (hit_cylinder((t_cylinder *)obj->figure, ray));
+	return (-1.0);
 }
 
 t_object	*find_closest_object(t_data *dt, t_ray ray, double *out_t)
@@ -52,14 +68,7 @@ t_object	*find_closest_object(t_data *dt, t_ray ray, double *out_t)
 	closest_t = 1e30;
 	while (curr)
 	{
-		t = -1.0;
-		if (curr->type == SPHERE)
-			t = hit_sphere((t_sphere *)curr->figure, ray);
-		else if (curr->type == PLANE)
-			t = hit_plane((t_plane *)curr->figure, ray);
-		else if (curr->type == CYLINDER)
-			t = hit_cylinder((t_cylinder *)curr->figure, ray);
-
+		t = get_object_intersection(curr, ray);
 		if (t > 0.001 && t < closest_t)
 		{
 			closest_t = t;

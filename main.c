@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/05 15:59:00 by blas              #+#    #+#             */
-/*   Updated: 2026/11/10 04:34:46 by andtruji         ###   ########.fr       */
+/*   Updated: 2026/11/10 10:04:55 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	init_data(t_data *dt, char **args)
 {
 	dt->fd_rt = open(args[1], O_RDONLY);
 	if (dt->fd_rt < 0)
-		return (ret_str("Error: Invalid File\n", 1));
+		return (ret_str("Error\n Invalid File\n", 1));
 	dt->aml.save = 0;
 	dt->cam.save = 0;
 	dt->objects = NULL;
@@ -41,7 +41,6 @@ int	init_data(t_data *dt, char **args)
 	parse_file(dt);
 	return (0);
 }
-
 
 int	key_hook(int keycode, t_data *dt)
 {
@@ -55,9 +54,9 @@ int	main(int argn, char **args)
 	t_data	dt;
 
 	if (argn <= 1)
-		return (ret_str("Error: Invalid format, enter: ./miniRT file.rt\n", 1));
+		return (ret_str("Error\nInvalid format, enter: ./miniRT file.rt\n", 1));
 	if (check_args(args, ".rt", argn - 1) == -1)
-		return (ret_str("Error: Incorrect File Format\n", 1));
+		return (ret_str("Error\nIncorrect File Format\n", 1));
 	init_data(&dt, args);
 	run_mlx(&dt);
 	end_data(&dt, 0, NULL);

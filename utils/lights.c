@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lights.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/10 10:06:39 by blas              #+#    #+#             */
+/*   Updated: 2026/11/10 10:06:39 by blas             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../mini_rt.h"
 
-void    free_lights(t_light *head)
+void	free_lights(t_light *head)
 {
-    t_light *tmp;
+	t_light	*tmp;
 
-    while (head)
-    {
-        tmp = head;
-        head = head->next;
-        free(tmp);
-    }
+	while (head)
+	{
+		tmp = head;
+		head = head->next;
+		free(tmp);
+	}
 }

@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/24 22:58:57 by blas              #+#    #+#             */
-/*   Updated: 2026/10/02 10:49:03 by andtruji         ###   ########.fr       */
+/*   Created: 2026/11/10 10:31:22 by blas              #+#    #+#             */
+/*   Updated: 2026/11/10 10:31:22 by blas             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../mini_rt.h"
 
@@ -22,15 +22,30 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 }
 
 //Aqui va todo el renderizado
-void	do_paint(t_data *dt)
+static void	paint_pixel(t_data *dt, int x, int y)
 {
-	int			x;
-	int			y;
 	t_ray		ray;
 	t_object	*hit_obj;
 	double		t;
 	int			color;
 	t_pos		hit_point;
+
+	ray = generate_ray(dt, x, y);
+	hit_obj = find_closest_object(dt, ray, &t);
+	if (hit_obj)
+	{
+		hit_point = v_add(ray.origin, v_scale(ray.dir, t));
+		color = compute_color(dt, hit_obj, hit_point);
+	}
+	else
+		color = 0x000000;
+	my_mlx_pixel_put(dt, x, y, color);
+}
+
+void	do_paint(t_data *dt)
+{
+	int	x;
+	int	y;
 
 	y = 0;
 	while (y < HEIGHT)
@@ -38,16 +53,7 @@ void	do_paint(t_data *dt)
 		x = 0;
 		while (x < WIDTH)
 		{
-			ray = generate_ray(dt, x, y);
-			hit_obj = find_closest_object(dt, ray, &t);
-			if (hit_obj)
-			{
-				hit_point = v_add(ray.origin, v_scale(ray.dir, t));
-				color = compute_color(dt, hit_obj, hit_point);
-			}
-			else
-				color = 0x000000;
-			my_mlx_pixel_put(dt, x, y, color);
+			paint_pixel(dt, x, y);
 			x++;
 		}
 		y++;
@@ -70,5 +76,3 @@ void	run_mlx(t_data *dt)
 	mlx_hook(dt->mlx_win, 17, 0, close_window, dt);
 	mlx_loop(dt->mlx);
 }
-
-

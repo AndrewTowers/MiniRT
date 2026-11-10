@@ -1,38 +1,39 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parse_camera.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andtruji <andtruji@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/24 11:48:44 by andtruji          #+#    #+#             */
-/*   Updated: 2026/09/23 19:43:28 by andtruji         ###   ########.fr       */
+/*   Created: 2026/11/10 10:27:42 by blas              #+#    #+#             */
+/*   Updated: 2026/11/10 10:28:51 by blas             ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../mini_rt.h"
 
-int parse_fov(char *fov_str, double *fov)
+int	parse_fov(char *fov_str, double *fov)
 {
-    *fov = ft_atof(fov_str);
-    if (*fov < 0.0 || *fov > 180.0)
-        return (0);
-    return (1);
+	*fov = ft_atof(fov_str);
+	if (*fov < 0.0 || *fov > 180.0)
+		return (0);
+	return (1);
 }
 
-int parse_camera(char *args, t_data *dt)
+int	parse_camera(char *args, t_data *dt)
 {
-    char    **parts;
+	char	**parts;
 
-    parts = splitter(args);
-    if (!parts || !parts[0] || !parts[1] || !parts[2] || parts[3])
-        return (0);
-    if (!parse_vec(parts[0], &dt->cam.pos) || !parse_normalized_vec(parts[1], &dt->cam.dir)
-        || !parse_fov(parts[2], &dt->cam.fov))
-    {
-        ft_free_split(parts);
-        return (0);
-    }
-    ft_free_split(parts);
-    return (1);
+	parts = splitter(args);
+	if (!parts || !parts[0] || !parts[1] || !parts[2] || parts[3])
+		return (0);
+	if (!parse_vec(parts[0], &dt->cam.pos)
+		|| !parse_normalized_vec(parts[1], &dt->cam.dir)
+		|| !parse_fov(parts[2], &dt->cam.fov))
+	{
+		ft_free_split(parts);
+		return (0);
+	}
+	ft_free_split(parts);
+	return (1);
 }

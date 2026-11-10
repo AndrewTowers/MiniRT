@@ -12,23 +12,11 @@
 
 #include "../../mini_rt.h"
 
-double	hit_sphere(t_sphere *sp, t_ray ray)
+static double	get_sphere_root(double a, double b, double discriminant)
 {
-	t_pos	oc;
-	double	a;
-	double	b;
-	double	c;
-	double	discriminant;
 	double	t1;
 	double	t2;
-	double	radius;
 
-	radius = sp->diameter / 2.0;
-	oc = v_sub(ray.origin, sp->pos);
-	a = v_dot(ray.dir, ray.dir);
-	b = 2.0 * v_dot(oc, ray.dir);
-	c = v_dot(oc, oc) - (radius * radius);
-	discriminant = (b * b) - (4.0 * a * c);
 	if (discriminant < 0.0)
 		return (-1.0);
 	t1 = (-b - sqrt(discriminant)) / (2.0 * a);
@@ -38,4 +26,20 @@ double	hit_sphere(t_sphere *sp, t_ray ray)
 	if (t2 > 0.001)
 		return (t2);
 	return (-1.0);
+}
+
+double	hit_sphere(t_sphere *sp, t_ray ray)
+{
+	t_pos	oc;
+	double	a;
+	double	b;
+	double	c;
+	double	r;
+
+	r = sp->diameter / 2.0;
+	oc = v_sub(ray.origin, sp->pos);
+	a = v_dot(ray.dir, ray.dir);
+	b = 2.0 * v_dot(oc, ray.dir);
+	c = v_dot(oc, oc) - (r * r);
+	return (get_sphere_root(a, b, (b * b) - (4.0 * a * c)));
 }

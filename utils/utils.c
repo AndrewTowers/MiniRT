@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/05 16:15:44 by blas              #+#    #+#             */
-/*   Updated: 2026/08/20 14:46:47 by bsiguenc         ###   ########.fr       */
+/*   Updated: 2026/11/10 10:25:14 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_findchar(char *str, char c)
 	i = 0;
 	if (!str || !c)
 	{
-		ft_printf("Error in findchar\n");
+		ft_printf("Error\n in findchar\n");
 		return (NULL);
 	}
 	while (str[i] != '\0')
@@ -37,14 +37,13 @@ char	*ft_findchar(char *str, char c)
 	return (NULL);
 }
 
-
 char	*ft_reverse_findchar(char *str, char c)
 {
 	int	i;
 
 	if (!str || !c)
 	{
-		ft_printf("Error in findchar\n");
+		ft_printf("Error\n in findchar\n");
 		return (NULL);
 	}
 	i = ft_strlen(str) - 1;
