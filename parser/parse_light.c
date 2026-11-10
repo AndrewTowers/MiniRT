@@ -6,7 +6,7 @@
 /*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 11:48:53 by andtruji          #+#    #+#             */
-/*   Updated: 2026/11/10 18:35:25 by bsiguenc         ###   ########.fr       */
+/*   Updated: 2026/11/10 19:13:24 by bsiguenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,27 @@ int	parse_ambient(char *args, t_data *dt)
 	return (1);
 }
 
+t_light	*create_light(char **parts)
+{
+	t_light	*new_light;
+
+	new_light = malloc(sizeof(t_light));
+	if (!new_light)
+		return (NULL);
+	if (!parse_vec(parts[0], &new_light->pos)
+		|| !parse_ratio(parts[1], &new_light->ratio)
+		|| !parse_rgb(parts[2], &new_light->rgb))
+	{
+		free(new_light);
+		return (NULL);
+	}
+	return (new_light);
+}
+
 int	parse_light(char *args, t_data *dt)
 {
-	char	**parts;
-	t_light	*new_light;
+	char		**parts;
+	t_light		*new_light;
 
 	parts = splitter(args);
 	if (!parts || !parts[0] || !parts[1] || !parts[2] || parts[3])
@@ -52,23 +69,17 @@ int	parse_light(char *args, t_data *dt)
 		ft_free_split(parts);
 		return (ret_str("Error\nParse LIGHT", 0));
 	}
-	if (dt->ready.l_ready == 0)
-		dt->ready.l_ready = 1;
-	else
-		return (ret_str("Error\nMultiple L", 0));
-	new_light = malloc(sizeof(t_light));
-	if (!new_light)
-		return (ft_free_split(parts), 0);
-	if (!parse_vec(parts[0], &new_light->pos)
-		|| !parse_ratio(parts[1], &new_light->ratio)
-		|| !parse_rgb(parts[2], &new_light->rgb))
+	if (dt->ready.l_ready != 0)
 	{
-		free(new_light);
 		ft_free_split(parts);
-		return (ret_str("Error\nNumber params LIGHT", 0));
+		return (ret_str("Error\nMultiple L", 0));
 	}
+	dt->ready.l_ready = 1;
+	new_light = create_light(parts);
+	ft_free_split(parts);
+	if (!new_light)
+		return (ret_str("Error\nNumber params LIGHT", 0));
 	new_light->next = dt->light;
 	dt->light = new_light;
-	ft_free_split(parts);
 	return (1);
 }

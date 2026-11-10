@@ -6,7 +6,7 @@
 /*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 12:30:40 by bsiguenc          #+#    #+#             */
-/*   Updated: 2026/11/10 18:58:31 by bsiguenc         ###   ########.fr       */
+/*   Updated: 2026/11/10 19:11:06 by bsiguenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static int	parse_single_line(t_data *dt, char *str)
 	space_pos = ft_strchr(trimmed, ' ');
 	if (!space_pos)
 		space_pos = ft_strchr(trimmed, '\t');
-
 	if (!space_pos)
 	{
 		free(trimmed);

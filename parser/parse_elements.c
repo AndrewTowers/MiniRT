@@ -6,7 +6,7 @@
 /*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 14:50:57 by bsiguenc          #+#    #+#             */
-/*   Updated: 2026/11/10 18:38:36 by bsiguenc         ###   ########.fr       */
+/*   Updated: 2026/11/10 19:10:48 by bsiguenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,9 @@ int	parse_cylinder(char *args, t_data *dt)
 	return (1);
 }
 
-
 int	check_line(char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (line[i])

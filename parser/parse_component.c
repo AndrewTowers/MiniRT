@@ -6,7 +6,7 @@
 /*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 11:47:01 by andtruji          #+#    #+#             */
-/*   Updated: 2026/11/10 18:36:34 by bsiguenc         ###   ########.fr       */
+/*   Updated: 2026/11/10 19:10:33 by bsiguenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int	is_normalized(t_pos vec)
 		return (0);
 	return (1);
 }
-
 
 int	parse_normalized_vec(char *str, t_pos *vec)
 {
