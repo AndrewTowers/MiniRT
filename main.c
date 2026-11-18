@@ -67,7 +67,8 @@ int	main(int argn, char **args)
 		return (ret_str("Error\nInvalid format, enter: ./miniRT file.rt\n", 1));
 	if (check_args(args, ".rt", argn - 1) == -1)
 		return (ret_str("Error\nIncorrect File Format\n", 1));
-	init_data(&dt, args);
+	if (init_data(&dt, args))
+		return (1);
 	run_mlx(&dt);
 	end_data(&dt, 0, NULL);
 	return (0);
